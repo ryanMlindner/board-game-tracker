@@ -1,21 +1,17 @@
-# Phase 4 Full-Stack Application Project Template
+# Board Game Tracker
 
-## Learning Goals
-
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
+## Project Pitch
+  An online database to keep track of games, scores, and attendance at game nights, with a UI that displays any 
+and all information that can be derived from the data (averages, placement, rankings, etc.). Users can log in and keep 
+track of all the data they wish to and come back to it whenever they need.
 
 ---
 
-## Introduction
+## ERD
 
-Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin (NOTE: node_modules will be
-generated in a subsequent step):
+#TODO
 
 ```console
-$ tree -L 2
-$ # the -L argument limits the depth at which we look into the directory structure
 .
 ├── CONTRIBUTING.md
 ├── LICENSE.md
@@ -32,16 +28,6 @@ $ # the -L argument limits the depth at which we look into the directory structu
     ├── models.py
     └── seed.py
 ```
-
-A `migrations` folder will be added to the `server` directory in a later step.
-
-The `client` folder contains a basic React application, while the `server`
-folder contains a basic Flask application. You will adapt both folders to
-implement the code for your project .
-
-NOTE: If you did not previously install `tree` in your environment setup, MacOS
-users can install this with the command `brew install tree`. WSL and Linux users
-can run `sudo apt-get install tree` to download it as well.
 
 ---
 
