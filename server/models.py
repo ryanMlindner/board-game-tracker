@@ -7,6 +7,33 @@ from config import db, bcrypt
 
 # Models
 
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
+
+    #serialize_rules= ('-sessions')
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String)
+    
+    sessions = db.relationship("Session", backref='user')
+    players = db.relationship("Player", backref='user')
+
+    _password_hash = db.Column(db.String)
+
+    @hybrid_property
+    def password_hash(self):
+        raise Exception('Password hashes may not be viewed.')
+
+    @password_hash.setter
+    def password_hash(self, password):
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8'))
+        self._password_hash = password_hash.decode('utf-8')
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(
+            self._password_hash, password.encode('utf-8'))
+
 
 class Game(db.Model, SerializerMixin):
     __tablename__ = 'games'
@@ -20,6 +47,7 @@ class Game(db.Model, SerializerMixin):
 
     game_instances = db.relationship("GameInstance", backref='game')
 
+
 class GameInstance(db.Model, SerializerMixin):
     __tablename__ = 'gameinstances'
 
@@ -31,6 +59,7 @@ class GameInstance(db.Model, SerializerMixin):
 
     scores = db.relationship("Score", cascade="all, delete-orphan", backref='gameinstance')
 
+
 class Session(db.Model, SerializerMixin):
     __tablename__ = 'sessions'
 
@@ -41,7 +70,10 @@ class Session(db.Model, SerializerMixin):
 
     game_instances = db.relationship("GameInstance", cascade="all, delete-orphan", backref='session')
     attendances = db.relationship("Attendance", cascade='all, delete-orphan', backref='session')
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   
+
 class Attendance(db.Model, SerializerMixin):
     __tablename__ = 'attendances'
 
@@ -50,6 +82,7 @@ class Attendance(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
     session_id = db.Column(db.Integer, db.ForeignKey('sessions.id'))
+
 
 class Player(db.Model, SerializerMixin):
     __tablename__ = 'players'
@@ -63,6 +96,9 @@ class Player(db.Model, SerializerMixin):
 
     attendances = db.relationship("Attendance", cascade='all, delete-orphan', backref='player')
     scores = db.relationship("Score", cascade='all, delete-orphan', backref='player')
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
 
 class Score(db.Model, SerializerMixin):
     __tablename__ = 'scores'
