@@ -15,8 +15,8 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
     
-    sessions = db.relationship("Session", backref='user')
-    players = db.relationship("Player", backref='user')
+    sessions = db.relationship("Session", backref='user') #TODO test
+    players = db.relationship("Player", backref='user') #TODO test
 
     _password_hash = db.Column(db.String)
 

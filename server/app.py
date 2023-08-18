@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import Game, GameInstance, Session, Attendance, Player, Score
+from models import Game, GameInstance, Session, Attendance, Player, Score, User
 
 # db helper functions
 def get_all_dict(cls):
@@ -69,7 +69,7 @@ api.add_resource(Sessions, '/sessions')
 api.add_resource(Attendances, '/attendances')
 api.add_resource(Players, '/players')
 api.add_resource(Scores, '/scores')
-
+#TODO login,logout,signup,checkauth
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
