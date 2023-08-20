@@ -1,8 +1,16 @@
 import React from "react";
+import ReactDOM from "react-dom/client";
+import { RecoilRoot } from "recoil";
 import App from "./components/App";
 import "./index.css";
-import { createRoot } from "react-dom/client";
+import 'semantic-ui-css/semantic.min.css';
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(<App />);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <BrowserRouter>
+        <RecoilRoot>
+            <App />
+        </RecoilRoot>
+    </BrowserRouter>
+);
