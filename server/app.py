@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, jsonify, make_response
+from flask import request, jsonify, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -12,6 +12,7 @@ from config import app, db, api
 from models import Game, GameInstance, Session, Attendance, Player, Score, User
 
 # db helper functions
+#TODO filter by user --admin unfiltered list
 def get_all_dict(cls):
     """takes a class model and returns the dicts of all objects in the database"""
     items = [item.to_dict() for item in cls.query.all()]
@@ -62,14 +63,59 @@ class Scores(Resource):
         response = make_response(get_all_dict(Score), 200)
         return response
 
+class Signup(Resource):
+    def post(self):
+        json = request.get_json()
+        user = User(username=json['username'])
+        user.password_hash = json['password']
+        db.session.add(user)
+        db.session.commit()
+        session['user_id'] = user.id
+        response = make_response(user.to_dict(), 201)
+        return response
 
-api.add_resource(Games, '/games')
-api.add_resource(GameInstances, '/gameinstances')
-api.add_resource(Sessions, '/sessions')
-api.add_resource(Attendances, '/attendances')
-api.add_resource(Players, '/players')
-api.add_resource(Scores, '/scores')
-#TODO login,logout,signup,checkauth
+class CheckAuth(Resource):
+    def get(self):
+        if session['user_id']:
+            user = User.query.filter(User.id == session['user_id']).first()
+            print(user)
+            response = make_response(user.to_dict(), 200)
+            return response
+        else:
+            return ({}, 204)
+
+class Login(Resource):
+    def post(self):
+        username = request.get_json()['username']
+
+        user = User.query.filter(User.username == username)
+        password = request.get_json()['password']
+
+        if user.authenticate(password):
+            session['user_id'] = user.id
+            response = make_response(user.to_dict(), 200)
+        else:
+            response = make_response({'error': 'Invalid username or password'}, 401)
+       
+        return response
+
+class Logout(Resource):
+    def delete(self):
+        session['user_id'] = None
+        response = make_response({'message': 'No Content'}, 204)
+        return response
+
+api.add_resource(Games, '/games', endpoint='games')
+api.add_resource(GameInstances, '/gameinstances', endpoint='gameinstances')
+api.add_resource(Sessions, '/sessions', endpoint='sessions')
+api.add_resource(Attendances, '/attendances', endpoint='attendances')
+api.add_resource(Players, '/players', endpoint='players')
+api.add_resource(Scores, '/scores', endpoint='scores')
+api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(Logout, '/logout', endpoint='logout')
+api.add_resource(CheckAuth, '/check_auth', endpoint='check_auth')
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
