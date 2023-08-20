@@ -16,6 +16,7 @@ if __name__ == '__main__':
     with app.app_context():
         print("Starting seed...")
         #test code comment out eventually
+        #TODO test code is broken anyways because of user
         game = Game(
             title="Definitely Game",
             publisher="publisher of Game",
