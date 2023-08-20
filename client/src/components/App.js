@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 
 //client todos! hell yeah! TODO login,signup,logout first?
+//logout button on nav bar
 //imports --home.js
 export default function App() {
   return (
