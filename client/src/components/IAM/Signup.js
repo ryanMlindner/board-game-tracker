@@ -3,7 +3,7 @@ import { useSetRecoilState } from "recoil";
 import { userAtom } from "../HelperFunctions/atoms";
 
 export default function Signup() {
-  const setUser = useSetRecoilState(userAtom)
+  const setUser = useSetRecoilState(userAtom) //todo change to both, ternary for if user is logged in
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   //TODO show something else if user is logged in

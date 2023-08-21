@@ -66,12 +66,15 @@ class Scores(Resource):
 class Signup(Resource):
     def post(self):
         json = request.get_json()
-        user = User(username=json['username'])
-        user.password_hash = json['password']
-        db.session.add(user)
-        db.session.commit()
-        session['user_id'] = user.id
-        response = make_response(user.to_dict(), 201)
+        if User.query.filter(User.username == json.username).first():
+            response = make_response({"message":"Username already exists"}, 400)
+        else:
+            user = User(username=json['username'])
+            user.password_hash = json['password']
+            db.session.add(user)
+            db.session.commit()
+            session['user_id'] = user.id
+            response = make_response(user.to_dict(), 201)
         return response
 
 class CheckAuth(Resource):
