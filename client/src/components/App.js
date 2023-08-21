@@ -1,10 +1,26 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+import Signup from "./IAM/Signup.js";
+import Login from "./IAM/Login.js";
+import Home from "./Home.js";
+import NavBar from "./NavBar.js";
+import { useRecoilState } from "recoil";
+import { userAtom } from "./HelperFunctions/atoms.js";
 
-//client todos! hell yeah! TODO login,signup,logout first?
-//logout button on nav bar
-//imports --home.js
+//TODOS in navbar, login, signup
+//next is testing resources, and setting stuff up for those
 export default function App() {
+  const [user, setUser] = useRecoilState(userAtom)
+
+  useEffect(() => {
+    // auto-login
+    fetch("/check_auth").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
   return (
     <div className="ui full-page">
 			
@@ -19,9 +35,6 @@ export default function App() {
         </Route>
         <Route exact path="/login">
           <Login/>
-        </Route>
-        <Route exact path="/allscores">
-          <AllScores/>
         </Route>
       </Switch>
     </div>

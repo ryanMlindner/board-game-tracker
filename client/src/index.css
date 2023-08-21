@@ -5,3 +5,7 @@
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+.full-page {
+	margin-left: 10%;
+	margin-right: 10%;
+}
