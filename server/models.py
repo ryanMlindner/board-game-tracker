@@ -33,6 +33,13 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
+    
+    @validates('username')
+    def validate_username(self, key, entry):
+        if User.query.filter(User.username == entry).first() != None:
+                raise ValueError("Username Taken!")
+        return entry
+
 
 
 class Game(db.Model, SerializerMixin):

@@ -6,9 +6,12 @@ export default function Home() {
   const user = useRecoilValue(userAtom)
   return (
     <div className="ui full-page">
+      {user ? 
       <div>
-        Welcome, {user.username}
+      Welcome, {user.username}
       </div>
+      : <div>Sign up or Log in PLACEHOLDER</div>
+      }
     </div>
   )
 }

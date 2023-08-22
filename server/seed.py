@@ -9,13 +9,26 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Game, GameInstance, Session, Attendance, Player, Score
+from models import db, Game, GameInstance, Session, Attendance, Player, Score, User
 
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
+        print("clearing db")
+        Game.query.delete()
+        GameInstance.query.delete()
+        Session.query.delete()
+        Attendance.query.delete()
+        Player.query.delete()
+        Score.query.delete()
+        User.query.delete()
         print("Starting seed...")
         #test code comment out eventually
+        print("setting up admin")
+        admin = User(username="admin")
+        admin.password_hash = "bananas"
+        db.session.add(admin)
+        db.session.commit()
         #TODO test code is broken anyways because of user
         game = Game(
             title="Definitely Game",

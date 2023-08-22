@@ -1,12 +1,13 @@
-import React from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useState } from "react";
+import { useRecoilState,  } from "recoil";
 import { userAtom } from "../HelperFunctions/atoms";
 //TODO all this stuff
 export default function Login() {
-  const setUser = useSetRecoilState(userAtom)
+  const [user, setUser] = useRecoilState(userAtom)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  //TODO catch login after being logged in errors?
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/login", {
@@ -24,7 +25,7 @@ export default function Login() {
   return (
     <div className="ui full-page">
       <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+        <h1>Log In</h1>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -43,6 +44,10 @@ export default function Login() {
         />
         <button type="submit">Sign Up</button>
       </form>
+      {user ?
+      <div>Logged in: {user.username}</div>
+      : <div>Use the form above to log in PLACEHOLDER</div>
+      }
     </div>
   )
 }
