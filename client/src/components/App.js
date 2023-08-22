@@ -7,7 +7,7 @@ import NavBar from "./NavBar.js";
 import { useRecoilState } from "recoil";
 import { userAtom } from "./HelperFunctions/atoms.js";
 
-//TODOS in navbar, login, signup
+//TODOS components for displaying actual data!
 //next is testing resources, and setting stuff up for those
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     // auto-login
     fetch("/check_auth").then((r) => {
-      if (r.ok) {
+      if (r.status === 200) {
         r.json().then((user) => setUser(user));
       }
     });
