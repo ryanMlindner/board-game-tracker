@@ -8,6 +8,8 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "./HelperFunctions/atoms.js";
 
 //TODOS components for displaying actual data!
+//list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
+//  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
 //next is testing resources, and setting stuff up for those
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
