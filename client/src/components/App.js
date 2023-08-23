@@ -6,6 +6,7 @@ import Home from "./Home.js";
 import NavBar from "./NavBar.js";
 import { useRecoilState } from "recoil";
 import { userAtom } from "./HelperFunctions/atoms.js";
+import Totals from "./Displays/Totals.js";
 
 //TODOS components for displaying actual data!
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
@@ -37,6 +38,9 @@ export default function App() {
         </Route>
         <Route exact path="/login">
           <Login/>
+        </Route>
+        <Route exact path="/totals">
+          <Totals/>
         </Route>
       </Switch>
     </div>

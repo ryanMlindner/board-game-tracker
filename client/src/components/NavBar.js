@@ -28,10 +28,12 @@ export default function NavBar(){
         </div>
         <div className="ui grid">
           <div className="three column row">
-            <div className="ui column basic button"
-            onClick={handleClick}>Log Out</div>
+            <div className="column">
+              <div className="ui button"
+              onClick={handleClick}>Log Out</div>
+            </div>
             <NavLink className="column" activeClassName="current"
-            to="/" exact>Placeholder</NavLink>
+            to="/totals" exact>Totals</NavLink>
             <NavLink className="column" activeClassName="current"
             to="/" exact>Placeholder</NavLink>
           </div>
