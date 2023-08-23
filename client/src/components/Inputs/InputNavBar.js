@@ -1,38 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { useSetRecoilState } from "recoil";
-import { userAtom } from "./HelperFunctions/atoms";
 
-export default function NavBar(){
-  const setUser = useSetRecoilState(userAtom)
+export default function InputNavBar(){
 
-  function handleClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
-        setUser(null);
-      }
-    });
-  }
   return(
-      <div className="navbar-container">
+      <div className="input-nav navbar-container">
         <div className="ui grid">
           <div className="three column row">
             <NavLink className="column" activeClassName="current"
-            to="/signup" exact>Sign Up</NavLink>
+            to="/newsession" exact>New Session</NavLink>
             <NavLink className="column" activeClassName="current"
-            to="/" exact >Home</NavLink>
+            to="/newplayer" exact >New Player</NavLink>
             <NavLink className="column" activeClassName="current"
-            to="/login" exact>Log In</NavLink>
+            to="/newboard" exact>Add Board Game</NavLink>
           </div>
         </div>
         <div className="ui grid">
           <div className="three column row">
-            <div className="column">
-              <div className="ui button"
-              onClick={handleClick}>Log Out</div>
-            </div>
             <NavLink className="column" activeClassName="current"
-            to="/totals" exact>Totals</NavLink>
+            to="/newscore" exact>New Score</NavLink>
+            <NavLink className="column" activeClassName="current"
+            to="/newgame" exact>New Played Game</NavLink>
             <NavLink className="column" activeClassName="current"
             to="/" exact>Placeholder</NavLink>
           </div>

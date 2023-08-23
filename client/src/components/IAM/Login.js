@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useRecoilState,  } from "recoil";
 import { userAtom } from "../HelperFunctions/atoms";
-//TODO all this stuff
+
 export default function Login() {
   const [user, setUser] = useRecoilState(userAtom)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  //TODO catch login after being logged in errors?
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/login", {
@@ -22,9 +21,10 @@ export default function Login() {
       }
     });
   }
+
   return (
     <div className="ui full-page">
-      <form onSubmit={handleSubmit}>
+      <form className="ui form"onSubmit={handleSubmit}>
         <h1>Log In</h1>
         <label htmlFor="username">Username</label>
         <input
@@ -42,7 +42,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <button type="submit">Sign Up</button>
+        <button className="ui button" type="submit">Sign Up</button>
       </form>
       {user ?
       <div>Logged in: {user.username}</div>

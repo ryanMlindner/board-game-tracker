@@ -7,12 +7,21 @@ import NavBar from "./NavBar.js";
 import { useRecoilState } from "recoil";
 import { userAtom } from "./HelperFunctions/atoms.js";
 import Totals from "./Displays/Totals.js";
+import InputNavBar from "./Inputs/InputNavBar.js";
+import NewSession from "./Inputs/NewSession.js";
+import NewScore from "./Inputs/NewScore.js";
+import NewPlayer from "./Inputs/NewPlayer.js";
+import NewGame from "./Inputs/NewGame.js";
+import NewBoard from "./Inputs/NewBoard.js";
 
 //TODOS components for displaying actual data!
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
 //next is testing resources, and setting stuff up for those
 //IMMEDIATE TODO POST FORM FOR NEW DATABASE ITEMS YOU CAN DO THIS RYAN COME ON
+//you did some actual work good job just fkin breathe this is huge but you can do it
+//TODO class toggle to view input menu
+
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
 
@@ -29,7 +38,8 @@ export default function App() {
     <div className="ui full-page">
 			
       <NavBar />
-      
+      <InputNavBar className="input-nav"/>
+
       <Switch>
         <Route exact path="/">
           <Home/>
@@ -42,6 +52,21 @@ export default function App() {
         </Route>
         <Route exact path="/totals">
           <Totals/>
+        </Route>
+        <Route exact path="/newboard">
+          <NewBoard/>
+        </Route>
+        <Route exact path="/newgame">
+          <NewGame/>
+        </Route>
+        <Route exact path="/newplayer">
+          <NewPlayer/>
+        </Route>
+        <Route exact path="/newscore">
+          <NewScore/>
+        </Route>
+        <Route exact path="/newsession">
+          <NewSession/>
         </Route>
       </Switch>
     </div>

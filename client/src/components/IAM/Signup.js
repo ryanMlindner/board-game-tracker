@@ -28,7 +28,7 @@ export default function Signup() {
 
   return (
     <div className="ui full-page">
-      <form onSubmit={handleSubmit}>
+      <form className="ui form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
         <label htmlFor="username">Username</label>
         <input
@@ -46,7 +46,7 @@ export default function Signup() {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <button type="submit">Sign Up</button>
+        <button className="ui button" type="submit">Sign Up</button>
       </form>
     </div>
   )
