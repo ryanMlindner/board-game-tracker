@@ -100,7 +100,7 @@ class Login(Resource):
             response = make_response(user.to_dict(), 200)
         else:
             response = make_response({'error': 'Invalid username or password'}, 401)
-       
+        
         return response
 
 class Logout(Resource):

@@ -12,6 +12,7 @@ import Totals from "./Displays/Totals.js";
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
 //next is testing resources, and setting stuff up for those
+//IMMEDIATE TODO POST FORM FOR NEW DATABASE ITEMS YOU CAN DO THIS RYAN COME ON
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
 
