@@ -9,3 +9,8 @@ export const playersAtom = atom({
   key: 'playersKey',
   default: ''
 })
+
+export const gamesAtom = atom({
+  key: 'gamesKey',
+  default: ''
+})

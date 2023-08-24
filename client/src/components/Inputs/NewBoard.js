@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { gamesAtom } from "../HelperFunctions/atoms";
 //TODO tailor forms
 
 export default function NewBoard() {
@@ -6,8 +8,9 @@ export default function NewBoard() {
   const [title, setTitle] = useState("")
   const [publisher, setPublisher] = useState("")
   const [genre, setGenre] = useState("")
-
   const [game, setGame] = useState(null)
+
+  const [games, setGames] = useRecoilState(gamesAtom)
 
   function handleSubmit(e) {
     const newGame = {
@@ -25,7 +28,10 @@ export default function NewBoard() {
     })
     .then(res => {
       if (res.ok) {
-        res.json().then(game => setGame(game))
+        res.json().then(returnedGame => {
+          setGame(returnedGame);
+          setGames([...games, returnedGame])
+        })
       }
     })
   }
