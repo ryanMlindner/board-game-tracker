@@ -10,7 +10,7 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    #serialize_rules= ('-sessions')
+    serialize_rules= ('-sessions.user', '-players.user')
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
@@ -94,7 +94,7 @@ class Attendance(db.Model, SerializerMixin):
 class Player(db.Model, SerializerMixin):
     __tablename__ = 'players'
 
-    serialize_rules = ('-scores.player',)
+    serialize_rules = ('-scores.player','-user')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
