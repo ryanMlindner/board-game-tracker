@@ -58,7 +58,9 @@ class Game(db.Model, SerializerMixin):
 class GameInstance(db.Model, SerializerMixin):
     __tablename__ = 'gameinstances'
 
-    serialize_rules = ('-scores.gameinstance','-session', '-game')
+    serialize_rules = ('-scores.gameinstance','-session.user_id', 
+                       '-session.attendances', '-game.gameinstances',
+                       '-session.game_instances')
 
     id = db.Column(db.Integer, primary_key=True)
     session_id = db.Column(db.Integer, db.ForeignKey('sessions.id'))

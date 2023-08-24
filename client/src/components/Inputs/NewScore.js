@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { gamesAtom, playersAtom, userAtom } from "../HelperFunctions/atoms";
-//TODO tailor forms
+import { gameinstancesAtom, playersAtom, userAtom } from "../HelperFunctions/atoms";
 
 export default function NewScore() {
   const user = useRecoilValue(userAtom);
   const [players, setPlayers] = useRecoilState(playersAtom);
-  const [games, setGames] = useRecoilState(gamesAtom);
+  const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom);
   const [points, setPoints] = useState(0);
   const [placement, setPlacement] = useState(0);
   
@@ -16,9 +15,9 @@ export default function NewScore() {
   const [score, setScore] = useState(null);
   
   useEffect(() => {
-    fetch('/games')
+    fetch('/gameinstances')
     .then(res => res.json())
-    .then(games => setGames(games))
+    .then(gameinstances => setGameinstances(gameinstances))
 
     fetch("/players")
     .then(res => res.json())
@@ -53,17 +52,18 @@ export default function NewScore() {
       <div>
       <form className="ui form" onSubmit={handleSubmit}>
         <h1>Game</h1>
-        <label htmlFor="score">Game</label>
+        <label htmlFor="gameinstance">Game</label>
         <select className="ui search dropdown" onChange={(e) => setGameId(e.target.value)}>
           <option value={null}>Select Game</option>
-          {games ?
-            games.map(game => {
-              return <option key={game.id} value={game.id}>{game.title}</option>
+          {gameinstances ?
+            gameinstances.map(gameinstance => {
+              return <option key={gameinstance.id} 
+              value={gameinstance.id}>{gameinstance.game.title}, {gameinstance.session.date}</option>
             })
           : <option value={null}>No games found</option>
           }
         </select>
-        <label htmlFor="gameinstance">Player</label>
+        <label htmlFor="player">Player</label>
         <select className="ui search dropdown" onChange={(e) => setPlayerId(e.target.value)}>
           <option value={null}>Select Player</option>
           {players ?

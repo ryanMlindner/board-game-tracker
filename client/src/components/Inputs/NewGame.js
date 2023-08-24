@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { gamesAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
+import { gameinstancesAtom, gamesAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
 //TODO tailor forms
 
 export default function NewGame() {
   const user = useRecoilValue(userAtom)
   const [games, setGames] = useRecoilState(gamesAtom)
   const [sessions, setSessions] = useRecoilState(sessionsAtom)
+  const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom)
 
   const [gameId, setGameId] = useState(null)
   const [sessionId, setSessionId] = useState(null)
 
   const [id, setId] = useState(null)
-
-
-  console.log(games)
-  console.log(sessions)
 
   useEffect(() => {
     fetch('/games')
@@ -43,7 +40,10 @@ export default function NewGame() {
     })
     .then(res => {
       if (res.ok) {
-        res.json().then((gameInstance) => setId(gameInstance.id))
+        res.json().then(gameInstance => {
+          setId(gameInstance.id)
+          setGameinstances([...gameinstances, gameInstance])
+        })
       }
     })
   }
