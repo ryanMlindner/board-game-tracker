@@ -41,7 +41,10 @@ export default function NewScore() {
     })
     .then(res => {
       if (res.ok) {
-        res.json().then((score) => setScore(score))
+        res.json().then((score) => {
+          console.log(score)
+          setScore(score)
+        })
       }
     })
   }
@@ -92,7 +95,7 @@ export default function NewScore() {
         <button className="ui button" type="submit">Add Player Score</button>
       </form>
       {score ?
-      <div>Last Score Added: Points: {score.points} Player: {score.player}</div>
+      <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
       : <div>No Scores added this session PLACEHOLDER</div>
       }
       </div>
