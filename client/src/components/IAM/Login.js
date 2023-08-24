@@ -42,7 +42,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <button className="ui button" type="submit">Sign Up</button>
+        <button className="ui button" type="submit">Login</button>
       </form>
       {user ?
       <div>Logged in: {user.username}</div>

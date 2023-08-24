@@ -43,7 +43,8 @@ if __name__ == '__main__':
         db.session.add(player)
         db.session.commit()
         session = Session(
-            date = date(2023, 10, 10),
+            date = '08/24/2023',
+            user_id = 1
         )
         db.session.add(session)
         db.session.commit()

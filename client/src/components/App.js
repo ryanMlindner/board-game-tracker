@@ -33,10 +33,6 @@ export default function App() {
     });
   }, []);
 
-  useEffect(() => {
-    
-  }, [user])
-
   return (
     <div className="ui full-page">
 			

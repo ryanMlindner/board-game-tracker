@@ -14,3 +14,8 @@ export const gamesAtom = atom({
   key: 'gamesKey',
   default: ''
 })
+
+export const sessionsAtom = atom({
+  key: 'sesssionskey',
+  default: ''
+})

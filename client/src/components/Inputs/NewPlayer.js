@@ -32,7 +32,7 @@ export default function NewPlayer() {
     <div className="ui full-page">
     {user ?
       <form className="ui form" onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+        <h1>Add Player</h1>
         <label htmlFor="name">Name</label>
         <input
           type="text"

@@ -1,11 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { gamesAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
 //TODO tailor forms
 
 export default function NewGame() {
-  
+  const user = useRecoilValue(userAtom)
+  const [games, setGames] = useRecoilState(gamesAtom)
+  const [sessions, setSessions] = useRecoilState(sessionsAtom)
+
+  const [gameId, setGameId] = useState(null)
+  const [sessionId, setSessionId] = useState(null)
+
+  const [id, setId] = useState(null)
+
+
+  console.log(games)
+  console.log(sessions)
+
+  useEffect(() => {
+    fetch('/games')
+    .then(res => res.json())
+    .then(games => setGames(games))
+
+    fetch("/sessions")
+    .then(res => res.json())
+    .then(data => setSessions(data))
+  }, [])
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newGameInstance = {
+      game_id: gameId,
+      session_id: sessionId,
+    }
+    fetch("/gameinstances", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newGameInstance),
+    })
+    .then(res => {
+      if (res.ok) {
+        res.json().then((gameInstance) => setId(gameInstance.id))
+      }
+    })
+  }
+
   return (
     <div className="ui full-page">
-
+    {user ?
+      <div>
+      <form className="ui form" onSubmit={handleSubmit}>
+        <h1>Game</h1>
+        <label htmlFor="gameinstance">Game</label>
+        <select className="ui search dropdown" onChange={(e) => setGameId(e.target.value)}>
+          <option value={null}>Select Game</option>
+          {games ?
+            games.map(game => {
+              return <option key={game.id} value={game.id}>{game.title}</option>
+            })
+          : <option value={null}>No games found</option>
+          }
+        </select>
+        <label htmlFor="gameinstance">Session</label>
+        <select className="ui search dropdown" onChange={(e) => setSessionId(e.target.value)}>
+          <option value={null}>Select Session</option>
+          {sessions ?
+            sessions.map(session => {
+              return <option key={session.id} value={session.id}>{session.date}</option>
+            })
+          : <option value={null}>No sessions found</option>
+          }
+        </select>
+        <button className="ui button" type="submit">Add Played Game</button>
+      </form>
+      {id ?
+      <div>Last Game Added ID: {id}</div>
+      : <div>No Games added this session PLACEHOLDER</div>
+      }
+      </div>
+    : <div>Log in to use this feature!</div>
+    }
     </div>
   )
 }
