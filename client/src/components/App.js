@@ -17,9 +17,6 @@ import NewBoard from "./Inputs/NewBoard.js";
 //TODOS components for displaying actual data!
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
-//next is testing resources, and setting stuff up for those
-//IMMEDIATE TODO POST FORM FOR NEW DATABASE ITEMS YOU CAN DO THIS RYAN COME ON
-//you did some actual work good job just fkin breathe this is huge but you can do it
 //TODO class toggle to view input menu
 //TODO games atom useeffect, referenced in dropdown of new game instance and DISPLAY GAMES-new
 //TODO display games (all games, gamecard, etc.)
@@ -35,6 +32,10 @@ export default function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    
+  }, [user])
 
   return (
     <div className="ui full-page">

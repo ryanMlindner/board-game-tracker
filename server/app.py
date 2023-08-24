@@ -13,8 +13,15 @@ from models import Game, GameInstance, Session, Attendance, Player, Score, User
 
 # db helper functions
 #TODO filter by user --admin unfiltered list
-def get_all_dict(cls):
+def get_all_dict_filter_user(cls):
     """takes a class model and returns the dicts of all objects in the database"""
+    if session['user_id'] == 1:
+        items = [item.to_dict() for item in cls.query.all()]
+    else:
+        items = [item.to_dict() for item in cls.query.filter(cls.user_id == session['user_id']).all()]
+    return items
+
+def get_all_dict(cls):
     items = [item.to_dict() for item in cls.query.all()]
     return items
 
@@ -68,7 +75,7 @@ class GameInstances(Resource):
 
 class Sessions(Resource):
     def get(self):
-        response = make_response(get_all_dict(Session), 200)
+        response = make_response(get_all_dict_filter_user(Session), 200)
         return response
     def post(self):
         json = request.get_json()
@@ -100,7 +107,7 @@ class Attendances(Resource):
 
 class Players(Resource):
     def get(self):
-        response = make_response(get_all_dict(Player), 200)
+        response = make_response(get_all_dict_filter_user(Player), 200)
         return response
     
     def post(self):
