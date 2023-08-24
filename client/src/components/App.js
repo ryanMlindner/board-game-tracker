@@ -21,6 +21,8 @@ import NewBoard from "./Inputs/NewBoard.js";
 //IMMEDIATE TODO POST FORM FOR NEW DATABASE ITEMS YOU CAN DO THIS RYAN COME ON
 //you did some actual work good job just fkin breathe this is huge but you can do it
 //TODO class toggle to view input menu
+//TODO games atom useeffect, referenced in dropdown of new game instance and DISPLAY GAMES-new
+//TODO display games (all games, gamecard, etc.)
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
