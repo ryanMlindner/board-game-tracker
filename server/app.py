@@ -37,31 +37,102 @@ class Games(Resource):
     def get(self):
         response = make_response(get_all_dict(Game), 200)
         return response
+    def post(self):
+        json = request.get_json()
+        new_game = Game(
+            title=json["title"],
+            publisher=json["publisher"],
+            genre=json["genre"]
+        )
+        db.session.add(new_game)
+        db.session.commit()
+        response = make_response(new_game.to_dict(), 201)
+        return response
+
 
 class GameInstances(Resource):
     def get(self):
         response = make_response(get_all_dict(GameInstance), 200)
         return response
+    def post(self):
+        json = request.get_json()
+        new_gameinstance = GameInstance(
+            game_id=json["game_id"],
+            session_id=json["session_id"]
+        )
+        db.session.add(new_gameinstance)
+        db.session.commit()
+        response = make_response(new_gameinstance.to_dict(), 201)
+        return response
+
 
 class Sessions(Resource):
     def get(self):
         response = make_response(get_all_dict(Session), 200)
         return response
+    def post(self):
+        json = request.get_json()
+        new_session = Session(
+            date=json["date"],
+            user_id=session["user_id"]
+        )
+        db.session.add(new_session)
+        db.session.commit()
+        response = make_response(new_session.to_dict(), 201)
+        return response
+
 
 class Attendances(Resource):
     def get(self):
         response = make_response(get_all_dict(Attendance), 200)
         return response
+    def post(self):
+        json = request.get_json()
+        new_attendance = Attendance(
+            player_id=json["player_id"],
+            session_id=json["session_id"]
+        )
+        db.session.add(new_attendance)
+        db.session.commit()
+        response = make_response(new_attendance.to_dict(), 201)
+        return response
+
 
 class Players(Resource):
     def get(self):
         response = make_response(get_all_dict(Player), 200)
         return response
+    
+    def post(self):
+        json = request.get_json()
+        new_player = Player(
+            name= json["name"],
+            user_id= session["user_id"]
+        )
+        db.session.add(new_player)
+        db.session.commit()
+        response = make_response(new_player.to_dict(), 201)
+        return response
+
 
 class Scores(Resource):
     def get(self):
         response = make_response(get_all_dict(Score), 200)
         return response
+    
+    def post(self):
+        json = request.get_json()
+        new_score = Score(
+            points=json["points"],
+            placement=json["placement"],
+            player_id=json["player_id"],
+            game_instance_id=json["game_instance_id"]
+        )
+        db.session.add(new_score)
+        db.session.commit()
+        response = make_response(new_score.to_dict(), 201)
+        return response
+
 
 class Signup(Resource):
     def post(self):

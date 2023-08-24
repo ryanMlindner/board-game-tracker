@@ -98,8 +98,6 @@ class Player(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    start_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime)
 
     attendances = db.relationship("Attendance", cascade='all, delete-orphan', backref='player')
     scores = db.relationship("Score", cascade='all, delete-orphan', backref='player')

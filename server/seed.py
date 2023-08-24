@@ -39,8 +39,6 @@ if __name__ == '__main__':
         db.session.commit()
         player = Player(
             name="Bob",
-            start_date=date(2023, 8, 8),
-            end_date=date(2023, 11, 11),
         )
         db.session.add(player)
         db.session.commit()
