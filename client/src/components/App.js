@@ -14,12 +14,13 @@ import NewPlayer from "./Inputs/NewPlayer.js";
 import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
 
-//TODOS components for displaying actual data!
-
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
-//TODO class toggle to view input menu
+//TODO maybe different pages for displays? stretch
+
 //TODO display games on home page (all games, gamecard, etc.)
+
+//TODO validations in database --DO ASAP--
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
