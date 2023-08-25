@@ -11,7 +11,7 @@ export default function Home() {
     .then(data => setGames(data))
   }, [])
 
-  
+
   return (
     <div className="ui full-page">
       <div className="ui hidden divider"></div>
@@ -27,7 +27,7 @@ export default function Home() {
         add <b>New Board Games</b> as you see fit. 
         Add <b>New Sessions</b> for nights of games, then add the <b>New Played Games</b> that 
         session using the dropdowns provided in those inputs. After adding a game for a session, 
-        add in the <b>New Scores</b> for each player that participated. The <b>Totals</b> page will 
+        add in the <b>New Scores</b> for each player that participated. The <b>Totals</b> page will
         update with statistics for each player as soon as the first score is submitted.
       </div>
       <h4>About the Author:</h4>

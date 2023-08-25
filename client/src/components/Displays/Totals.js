@@ -18,7 +18,7 @@ export default function Totals() {
     fetch('/gameinstances')
     .then(res => res.json())
     .then(gameinstances => setGameinstances(gameinstances))
-    }, [])
+    }, [user])
 
   return (
     <div className="ui full-page">
