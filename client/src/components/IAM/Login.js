@@ -24,6 +24,7 @@ export default function Login() {
 
   return (
     <div className="ui full-page">
+      <div className="ui hidden divider"></div>
       <form className="ui form"onSubmit={handleSubmit}>
         <h1>Log In</h1>
         <label htmlFor="username">Username</label>
@@ -44,8 +45,10 @@ export default function Login() {
         />
         <button className="ui button" type="submit">Login</button>
       </form>
+
+      <div className="ui hidden divider"></div>
       {user ?
-      <div>Logged in: {user.username}</div>
+      <h3>Logged in: {user.username}</h3>
       : <div>Use the form above to log in PLACEHOLDER</div>
       }
     </div>

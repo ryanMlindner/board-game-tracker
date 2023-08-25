@@ -38,6 +38,7 @@ export default function NewBoard() {
   
   return (
     <div className="ui full-page">
+      <div className="ui hidden divider"></div>
       <form className="ui form" onSubmit={handleSubmit}>
         <h1>Add new board game to the database</h1>
         <label htmlFor="title">Title</label>
@@ -66,6 +67,7 @@ export default function NewBoard() {
         />
         <button className="ui button" type="submit">Add Game</button>
       </form>
+      <div className="ui hidden divider"></div>
       {game ?
       <div>Last game added: {game.title}</div>
       : <div>Use the form above to add a game PLACEHOLDER</div>

@@ -7,6 +7,7 @@ export default function NewPlayer() {
   const [players, setPlayers] = useRecoilState(playersAtom)
 
   const [playerName, setName] = useState('')
+  const [player, setPlayer] = useState(null)
 
   function handleSubmit(e) {
     const newPlayer = {
@@ -23,14 +24,19 @@ export default function NewPlayer() {
     })
     .then(res => {
       if (res.ok) {
-        res.json().then((player) => setPlayers([...players, player]))
+        res.json().then((player) => {
+          setPlayers([...players, player])
+          setPlayer(player)
+        })
       }
     })
   }
   
   return (
     <div className="ui full-page">
+      <div className="ui hidden divider"></div>
     {user ?
+    <div>
       <form className="ui form" onSubmit={handleSubmit}>
         <h1>Add Player</h1>
         <label htmlFor="name">Name</label>
@@ -43,6 +49,12 @@ export default function NewPlayer() {
         />
         <button className="ui button" type="submit">Add Player</button>
       </form>
+      
+      {player ?
+        <div>Last Player added: {player.name}</div>
+        : <div>No Players added this session PLACEHOLDER</div>
+      }
+    </div>
     : <div>Log in to use this feature!</div>
     }
     </div>

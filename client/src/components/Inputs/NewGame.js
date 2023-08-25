@@ -50,6 +50,7 @@ export default function NewGame() {
 
   return (
     <div className="ui full-page">
+    <div className="ui hidden divider"></div>
     {user ?
       <div>
       <form className="ui form" onSubmit={handleSubmit}>
@@ -76,6 +77,7 @@ export default function NewGame() {
         </select>
         <button className="ui button" type="submit">Add Played Game</button>
       </form>
+      <div className="ui hidden divider"></div>
       {id ?
       <div>Last Game Added ID: {id}</div>
       : <div>No Games added this session PLACEHOLDER</div>

@@ -6,11 +6,12 @@ export default function Home() {
   const user = useRecoilValue(userAtom)
   return (
     <div className="ui full-page">
+      <div className="ui hidden divider"></div>
       {user ? 
-      <div>
+      <h2>
       Welcome, {user.username}
-      </div>
-      : <div>Sign up or Log in PLACEHOLDER</div>
+      </h2>
+      : <h4>Sign up or Log in PLACEHOLDER</h4>
       }
       <h1>How To:</h1>
       <p>Login or Signup, then add <b>New Players</b> and add <b>Board Games</b> as you see fit. 

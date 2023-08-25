@@ -41,11 +41,6 @@ export default function NavBar(){
               to="/login" exact>Log In</NavLink>
             </div>
           </div>
-          
-          <div className="item">
-            <div className="ui button"
-            onClick={handleLogOutClick}>Log Out</div>
-          </div>
           <div className="item">
             <div className="ui button">
             <NavLink activeClassName="current"
@@ -53,7 +48,11 @@ export default function NavBar(){
             </div>
           </div>
           <div className="item">
-            <div className="ui button"
+            <div className="ui grey button"
+            onClick={handleLogOutClick}>Log Out</div>
+          </div>
+          <div className="item">
+            <div className="ui grey button"
             onClick={handleClick}>Show Input Menu</div>
           </div>
         </div>

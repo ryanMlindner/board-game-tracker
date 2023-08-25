@@ -21,21 +21,24 @@ export default function Totals() {
     }, [])
 
   return (
-    <div className="ui cards full-page">
-      {players ?
-      players.map(player => {
-        return <PlayerCard
-        key = {player.id}
-        name = {player.name}
-        scores = {player.scores}
-        totalPoints = {player.total_score}
-        wins = {player.wins}
-        averagePlacement = {player.average_placement}
-        />
-      })
-      :
-      <div>No Players to show for user</div>
-      }
+    <div className="ui full-page">
+      <div className="ui hidden divider"></div>
+      <div className="ui cards">
+        {players ?
+        players.map(player => {
+          return <PlayerCard
+          key = {player.id}
+          name = {player.name}
+          scores = {player.scores}
+          totalPoints = {player.total_score}
+          wins = {player.wins}
+          averagePlacement = {player.average_placement}
+          />
+        })
+        :
+        <div>No Players to show for user</div>
+        }
+      </div>
     </div>
   )
 }

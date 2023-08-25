@@ -1,9 +1,9 @@
 import React, { useState} from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userAtom } from "../HelperFunctions/atoms";
 
 export default function Signup() {
-  const setUser = useSetRecoilState(userAtom) //todo change to both, ternary for if user is logged in
+  const [user, setUser] = useRecoilState(userAtom) //todo change to both, ternary for if user is logged in
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   //TODO show something else if user is logged in
@@ -28,6 +28,7 @@ export default function Signup() {
 
   return (
     <div className="ui full-page">
+      <div className="ui hidden divider"></div>
       <form className="ui form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
         <label htmlFor="username">Username</label>
@@ -48,6 +49,11 @@ export default function Signup() {
         />
         <button className="ui button" type="submit">Sign Up</button>
       </form>
+      <div className="ui hidden divider"></div>
+      {user ?
+      <h3>Signed up: {user.username}</h3>
+      : <div>Use the form above to log in PLACEHOLDER</div>
+      }
     </div>
   )
 }

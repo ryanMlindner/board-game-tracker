@@ -51,6 +51,7 @@ export default function NewScore() {
 
   return (
     <div className="ui full-page">
+    <div className="ui hidden divider"></div>
     {user ?
       <div>
       <form className="ui form" onSubmit={handleSubmit}>
@@ -94,6 +95,7 @@ export default function NewScore() {
         />
         <button className="ui button" type="submit">Add Player Score</button>
       </form>
+      <div className="ui hidden divider"></div>
       {score ?
       <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
       : <div>No Scores added this session PLACEHOLDER</div>

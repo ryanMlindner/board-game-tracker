@@ -35,6 +35,7 @@ export default function NewSession() {
 
   return (
     <div className="ui full-page">
+      <div className="ui hidden divider"></div>
       {user ?
       <div>
       <form className="ui form" onSubmit={handleSubmit}>
@@ -50,6 +51,7 @@ export default function NewSession() {
         />
         <button className="ui button" type="submit">Add Session</button>
       </form>
+      <div className="ui hidden divider"></div>
       {session ?
       <div>Last session added: {session.date}</div>
       : <div>no session added this session PLACEHOLDER</div>

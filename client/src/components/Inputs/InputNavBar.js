@@ -5,17 +5,10 @@ import { showExtraAtom } from "../HelperFunctions/atoms";
 
 export default function InputNavBar(){
   const showExtra = useRecoilValue(showExtraAtom)
-  
 
   return(
       <div className={showExtra ? "" : "hide"}>
         <div className="ui menu">
-          <div className="item">
-            <div className="ui button">
-              <NavLink activeClassName="current"
-              to="/newsession" exact>New Session</NavLink>
-            </div>
-          </div>
           <div className="item">
             <div className="ui button">
               <NavLink activeClassName="current"
@@ -31,7 +24,7 @@ export default function InputNavBar(){
           <div className="item">
             <div className="ui button">
               <NavLink activeClassName="current"
-              to="/newscore" exact>New Score</NavLink>
+              to="/newsession" exact>New Session</NavLink>
             </div>
           </div>
           <div className="item">
@@ -43,7 +36,7 @@ export default function InputNavBar(){
           <div className="item">
             <div className="ui button">
               <NavLink activeClassName="current"
-              to="/" exact>Placeholder</NavLink>
+              to="/newscore" exact>New Score</NavLink>
             </div>
           </div>
         </div>
