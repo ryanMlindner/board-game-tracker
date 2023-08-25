@@ -1,21 +1,25 @@
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { playersAtom, userAtom } from "../HelperFunctions/atoms";
+import { gameinstancesAtom, playersAtom, userAtom } from "../HelperFunctions/atoms";
 import PlayerCard from "./PlayerCard";
 
 export default function Totals() {
   const [players, setPlayers] = useRecoilState(playersAtom)
+  const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom)
   const user = useRecoilValue(userAtom)
 
   useEffect(() => {
-    fetch("/players")
+    fetch("/rankings")
     .then(res => res.json())
     .then(data => {
-      //console.log(data)
-      setPlayers(data)
+      const sortedList = data.sort((a,b) => b.total_score - a.total_score)
+      setPlayers([...sortedList])
     })
+    fetch('/gameinstances')
+    .then(res => res.json())
+    .then(gameinstances => setGameinstances(gameinstances))
     }, [])
-  
+
   return (
     <div className="ui cards full-page">
       {players ?
@@ -24,6 +28,9 @@ export default function Totals() {
         key = {player.id}
         name = {player.name}
         scores = {player.scores}
+        totalPoints = {player.total_score}
+        wins = {player.wins}
+        averagePlacement = {player.average_placement}
         />
       })
       :

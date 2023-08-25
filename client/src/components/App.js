@@ -40,7 +40,7 @@ export default function App() {
     <div className="ui full-page">
 			
       <NavBar />
-      <InputNavBar className="input-nav"/>
+      <InputNavBar/>
 
       <Switch>
         <Route exact path="/">

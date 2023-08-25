@@ -104,6 +104,11 @@ class Player(db.Model, SerializerMixin):
     attendances = db.relationship("Attendance", cascade='all, delete-orphan', backref='player')
     scores = db.relationship("Score", cascade='all, delete-orphan', backref='player')
 
+    #janky hybrids that arent hybrids here
+    total_score = db.Column(db.Integer)
+    wins = db.Column(db.Integer)
+    average_placement = db.Column(db.Numeric(2,3))
+
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 

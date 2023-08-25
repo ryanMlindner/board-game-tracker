@@ -24,3 +24,8 @@ export const gameinstancesAtom = atom({
   key: 'gameinstancesKey',
   default: ''
 })
+
+export const showExtraAtom = atom({
+  key: 'showextraKey',
+  default: ''
+})

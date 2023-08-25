@@ -89,6 +89,7 @@ class Sessions(Resource):
         return response
 
 
+#currently unused
 class Attendances(Resource):
     def get(self):
         response = make_response(get_all_dict(Attendance), 200)
@@ -141,6 +142,35 @@ class Scores(Resource):
         return response
 
 
+#Someday this will change, because its a wonky, slow, confusing way to do this
+#but it works for now
+class Rankings(Resource):
+    def get(self):
+        if session['user_id'] == 1:
+            players = [player for player in Player.query.all()]
+        else:
+            players = [player for player in Player.query.filter(Player.user_id == session['user_id']).all()]
+        for player in players:
+            player.total_score = 0
+            player.wins = 0
+            placements = 0
+            scores = 0
+            for score in player.scores:
+                scores += 1
+                player.total_score += score.points
+                if score.placement == 1:
+                    player.wins += 1
+                placements += score.placement
+            if scores == 0:
+                player.average_placement = 0
+            else:
+                player.average_placement = placements/scores
+        
+        players_dict = [player.to_dict() for player in players]
+        response = make_response(players_dict, 200)
+        return response
+
+
 class Signup(Resource):
     def post(self):
         json = request.get_json()
@@ -190,9 +220,12 @@ class Logout(Resource):
 api.add_resource(Games, '/games', endpoint='games')
 api.add_resource(GameInstances, '/gameinstances', endpoint='gameinstances')
 api.add_resource(Sessions, '/sessions', endpoint='sessions')
-api.add_resource(Attendances, '/attendances', endpoint='attendances')
+api.add_resource(Attendances, '/attendances', endpoint='attendances') #currently unused
 api.add_resource(Players, '/players', endpoint='players')
 api.add_resource(Scores, '/scores', endpoint='scores')
+
+api.add_resource(Rankings, '/rankings', endpoint='rankings')
+
 api.add_resource(Signup, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')

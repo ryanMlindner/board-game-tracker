@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ScoreCard from "./ScoreCard";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { gameinstancesAtom } from "../HelperFunctions/atoms";
 
-export default function PlayerCard({ name, scores }) {
-  const totalScore = scores.reduce((accumulator, element) => {
-    return accumulator + element.points;
-  },0)
-  //console.log(totalScore)
+export default function PlayerCard({ name, scores, totalPoints, wins, averagePlacement }) {
+  const gameinstances = useRecoilValue(gameinstancesAtom)
 
   return (
     <div className="ui raised card">
       <div className="content">
         <div className="header">Name: {name}</div>
-        <div className="meta">Total Points: {totalScore}</div>
+        <div className="meta">Total Points: {totalPoints} Wins: {wins} </div>
+        <div className="meta">Average Placement: {averagePlacement} </div>
       </div>
       <div className="extra content">
         {scores ?
@@ -20,7 +20,7 @@ export default function PlayerCard({ name, scores }) {
           key={score.id}
           placement={score.placement}
           points={score.points}
-          gameInstanceId={score.game_instance_id}
+          gameInstance={gameinstances[score.game_instance_id - 1]}
           />})
         :<div>No scores for player</div>}
       </div>

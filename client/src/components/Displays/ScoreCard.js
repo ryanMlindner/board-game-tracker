@@ -1,12 +1,19 @@
 import React from "react";
 
-export default function ScoreCard({ placement, points, gameInstanceId}) {
-  //TODO add in reference lists for games to grab titles from IDs
+export default function ScoreCard({ placement, points, gameInstance}) {
+
   return (
     <div>
       <div>Placement : {placement}</div>
       <div>Points : {points}</div>
-      <div>Game PLACEHOLDER: {gameInstanceId}</div>
+      {gameInstance ? 
+      <div>
+        <div>Game: {gameInstance.game.title}</div>
+        <div>Date: {gameInstance.session.date}</div>
+        <div>---</div>
+      </div>
+      : <div></div>
+      }
     </div>
   )
 }
