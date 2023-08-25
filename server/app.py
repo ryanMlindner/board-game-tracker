@@ -51,11 +51,14 @@ class Games(Resource):
             publisher=json["publisher"],
             genre=json["genre"]
         )
-        db.session.add(new_game)
-        db.session.commit()
-        response = make_response(new_game.to_dict(), 201)
-        return response
-
+        try:
+            db.session.add(new_game)
+            db.session.commit()
+            response = make_response(new_game.to_dict(), 201)
+            return response
+        except ValueError:
+            response = make_response({"errors": "validation errors"}, 400)
+            return response
 
 class GameInstances(Resource):
     def get(self):
@@ -67,10 +70,14 @@ class GameInstances(Resource):
             game_id=json["game_id"],
             session_id=json["session_id"]
         )
-        db.session.add(new_gameinstance)
-        db.session.commit()
-        response = make_response(new_gameinstance.to_dict(), 201)
-        return response
+        try:
+            db.session.add(new_gameinstance)
+            db.session.commit()
+            response = make_response(new_gameinstance.to_dict(), 201)
+            return response
+        except ValueError:
+            response = make_response({"errors": "validation errors"}, 400)
+            return response
 
 
 class Sessions(Resource):
@@ -83,10 +90,14 @@ class Sessions(Resource):
             date=json["date"],
             user_id=session["user_id"]
         )
-        db.session.add(new_session)
-        db.session.commit()
-        response = make_response(new_session.to_dict(), 201)
-        return response
+        try:
+            db.session.add(new_session)
+            db.session.commit()
+            response = make_response(new_session.to_dict(), 201)
+            return response
+        except ValueError:
+            response = make_response({"errors": "validation errors"}, 400)
+            return response
 
 
 #currently unused
@@ -117,10 +128,14 @@ class Players(Resource):
             name= json["name"],
             user_id= session["user_id"]
         )
-        db.session.add(new_player)
-        db.session.commit()
-        response = make_response(new_player.to_dict(), 201)
-        return response
+        try:
+            db.session.add(new_player)
+            db.session.commit()
+            response = make_response(new_player.to_dict(), 201)
+            return response
+        except ValueError:
+                response = make_response({"errors": "validation errors"}, 400)
+                return response
 
 
 class Scores(Resource):
@@ -136,10 +151,14 @@ class Scores(Resource):
             player_id=json["player_id"],
             game_instance_id=json["game_instance_id"]
         )
-        db.session.add(new_score)
-        db.session.commit()
-        response = make_response(new_score.to_dict(), 201)
-        return response
+        try:
+            db.session.add(new_score)
+            db.session.commit()
+            response = make_response(new_score.to_dict(), 201)
+            return response
+        except ValueError:
+            response = make_response({"errors": "validation errors"}, 400)
+            return response
 
 
 #Someday this will change, because its a wonky, slow, confusing way to do this

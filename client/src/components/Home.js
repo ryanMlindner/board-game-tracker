@@ -1,9 +1,17 @@
-import React from "react";
-import { userAtom } from "./HelperFunctions/atoms";
-import { useRecoilValue } from "recoil";
+import React, { useEffect } from "react";
+import { gamesAtom, userAtom } from "./HelperFunctions/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function Home() {
   const user = useRecoilValue(userAtom)
+  const [games, setGames] = useRecoilState(gamesAtom)
+  useEffect(() => {
+    fetch("/games")
+    .then(res => res.json())
+    .then(data => setGames(data))
+  }, [])
+
+  
   return (
     <div className="ui full-page">
       <div className="ui hidden divider"></div>

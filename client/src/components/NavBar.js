@@ -48,6 +48,12 @@ export default function NavBar(){
             </div>
           </div>
           <div className="item">
+            <div className="ui button">
+            <NavLink activeClassName="current"
+            to="/gamelist" exact>Game List</NavLink>
+            </div>
+          </div>
+          <div className="item">
             <div className="ui grey button"
             onClick={handleLogOutClick}>Log Out</div>
           </div>

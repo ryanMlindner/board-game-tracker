@@ -54,6 +54,12 @@ class Game(db.Model, SerializerMixin):
 
     game_instances = db.relationship("GameInstance", backref='game')
 
+    @validates('title', 'publisher', 'genre')
+    def validate_username(self, key, entry):
+        if entry == '':
+                raise ValueError("Field Cannot be empty!")
+        return entry
+
 
 class GameInstance(db.Model, SerializerMixin):
     __tablename__ = 'gameinstances'
@@ -68,6 +74,12 @@ class GameInstance(db.Model, SerializerMixin):
 
     scores = db.relationship("Score", cascade="all, delete-orphan", backref='gameinstance')
 
+    @validates('session_id', 'game_id')
+    def validate_username(self, key, entry):
+        if entry == '':
+                raise ValueError("Field Cannot be empty!")
+        return entry
+
 
 class Session(db.Model, SerializerMixin):
     __tablename__ = 'sessions'
@@ -81,6 +93,12 @@ class Session(db.Model, SerializerMixin):
     attendances = db.relationship("Attendance", cascade='all, delete-orphan', backref='session')
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    @validates('date')
+    def validate_username(self, key, entry):
+        if entry == '':
+                raise ValueError("Field Cannot be empty!")
+        return entry
   
 
 class Attendance(db.Model, SerializerMixin):
@@ -111,6 +129,12 @@ class Player(db.Model, SerializerMixin):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    @validates('name')
+    def validate_username(self, key, entry):
+        if entry == '':
+                raise ValueError("Field Cannot be empty!")
+        return entry
+
 
 class Score(db.Model, SerializerMixin):
     __tablename__ = 'scores'
@@ -123,3 +147,9 @@ class Score(db.Model, SerializerMixin):
 
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
     game_instance_id = db.Column(db.Integer, db.ForeignKey('gameinstances.id'))
+
+    @validates('points', 'placement')
+    def validate_username(self, key, entry):
+        if entry == '':
+                raise ValueError("Field Cannot be empty!")
+        return entry

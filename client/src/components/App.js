@@ -13,6 +13,7 @@ import NewScore from "./Inputs/NewScore.js";
 import NewPlayer from "./Inputs/NewPlayer.js";
 import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
+import GameList from "./Displays/GameList.js";
 
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
@@ -67,6 +68,9 @@ export default function App() {
         </Route>
         <Route exact path="/newsession">
           <NewSession/>
+        </Route>
+        <Route exact path="/gamelist">
+          <GameList/>
         </Route>
       </Switch>
     </div>
