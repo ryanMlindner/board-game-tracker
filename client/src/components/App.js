@@ -18,10 +18,8 @@ import GameList from "./Displays/GameList.js";
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
 //TODO maybe different pages for displays? stretch
-
-//TODO display games on home page (all games, gamecard, etc.)
-
-//TODO validations in database --DO ASAP--
+//TODO add in average points? can be in rankings to bootstrap like everything else
+//TODO deployment maybe?? I might have time...
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
