@@ -29,6 +29,8 @@ export default function Home() {
         session using the dropdowns provided in those inputs. After adding a game for a session, 
         add in the <b>New Scores</b> for each player that participated. The <b>Totals</b> page will
         update with statistics for each player as soon as the first score is submitted.
+        Adding board games to the database is possible without logging in, as they are not user
+        dependent.
       </div>
       <h4>About the Author:</h4>
       <div className="ui tertiary segment">
