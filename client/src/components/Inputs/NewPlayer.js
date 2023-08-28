@@ -85,7 +85,7 @@ export default function NewPlayer() {
       <form className="ui form" onSubmit={handleUpdateSubmit}>
         <h1>Select Player</h1>
         <select className="ui search dropdown" onChange={(e) => setPlayerId(e.target.value)}>
-          <option value={null}>Select Player</option>
+          <option value={null}>Rename Player</option>
           {players ?
             players.map(player => {
               return <option key={player.id} value={player.id}>{player.name}</option>
