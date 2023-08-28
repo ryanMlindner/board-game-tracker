@@ -9,7 +9,7 @@ export default function Title() {
       <h1>
         Board Game Tracker <img src={Logo} width="20" height="20" alt="board" />
       </h1>
-      <h5>The point tracker for people who take game night way too seriously</h5>
+      <h5>The point tracker for people who take game night WAY too seriously</h5>
       <div className="ui hidden divider"></div>
     </div>
   )

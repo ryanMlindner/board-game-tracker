@@ -4,7 +4,9 @@
 
 @pageBackground: #111;
 
-@textColor: #b4b4b4;
+@textColor: #787878;
 
-@primaryColor        : @lightPurple;
+@primaryColor        : @lightBlue;
 @secondaryColor      : @lightTeal;
+
+@inputColor: @textColor;

@@ -53,6 +53,7 @@ export default function NewGame() {
     <div className="ui hidden divider"></div>
     {user ?
       <div>
+      <div className="ui inverted segment">
       <form className="ui form" onSubmit={handleSubmit}>
         <h1>Game</h1>
         <label htmlFor="gameinstance">Game</label>
@@ -75,8 +76,10 @@ export default function NewGame() {
           : <option value={null}>No sessions found</option>
           }
         </select>
-        <button className="ui button" type="submit">Add Played Game</button>
+        <div className="ui hidden divider"></div>
+        <button className="ui primary button" type="submit">Add Played Game</button>
       </form>
+      </div>
       <div className="ui hidden divider"></div>
       {id ?
       <div>Last Game Added ID: {id}</div>

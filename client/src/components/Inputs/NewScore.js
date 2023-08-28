@@ -54,6 +54,7 @@ export default function NewScore() {
     <div className="ui hidden divider"></div>
     {user ?
       <div>
+        <div className="ui inverted segment">
       <form className="ui form" onSubmit={handleSubmit}>
         <h1>Game</h1>
         <label htmlFor="gameinstance">Game</label>
@@ -93,8 +94,10 @@ export default function NewScore() {
           value={placement}
           onChange={(e) => setPlacement(e.target.value)}
         />
-        <button className="ui button" type="submit">Add Player Score</button>
+        <div className="ui hidden divider"></div>
+        <button className="ui primary button" type="submit">Add Player Score</button>
       </form>
+      </div>
       <div className="ui hidden divider"></div>
       {score ?
       <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>

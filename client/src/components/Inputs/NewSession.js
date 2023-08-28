@@ -38,24 +38,29 @@ export default function NewSession() {
       <div className="ui hidden divider"></div>
       {user ?
       <div>
-      <form className="ui form" onSubmit={handleSubmit}>
-        <h1>New Session</h1>
-        <label htmlFor="date">Date</label>
-        <input
-          type="text"
-          id="date"
-          autoComplete="off"
-          value={date}
-          placeholder="mm/dd/yyyy"
-          onChange={(e) => setDate(e.target.value)}
-        />
-        <button className="ui button" type="submit">Add Session</button>
-      </form>
+        
+      <div className="ui inverted segment">
+        <form className="ui form" onSubmit={handleSubmit}>
+          <h1>New Session</h1>
+          <label htmlFor="date">Date</label>
+          <input
+            type="text"
+            id="date"
+            autoComplete="off"
+            value={date}
+            placeholder="mm/dd/yyyy"
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <div className="ui hidden divider"></div>
+          <button className="ui primary button" type="submit">Add Session</button>
+        </form>
+      </div>
       <div className="ui hidden divider"></div>
       {session ?
       <div>Last session added: {session.date}</div>
       : <div>no session added this session PLACEHOLDER</div>
       }
+
       </div>
     : <div>Log in to use this feature!</div>
     }

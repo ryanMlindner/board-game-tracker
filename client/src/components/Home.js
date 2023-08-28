@@ -21,7 +21,7 @@ export default function Home() {
       </div>
       :
       <div className="ui inverted segment">
-        <h4>Sign up or Log in PLACEHOLDER</h4>
+        <h4>Sign up or Log in to use most features</h4>
       </div>
       }
       <h1>How To:</h1>
