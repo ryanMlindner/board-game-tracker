@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { gameinstancesAtom, playersAtom, userAtom } from "../HelperFunctions/atoms";
+import { gameinstancesAtom, playersAtom, updatedAtom, userAtom } from "../HelperFunctions/atoms";
 import PlayerCard from "./PlayerCard";
 
 export default function Totals() {
+  const updated = useRecoilValue(updatedAtom)
   const [players, setPlayers] = useRecoilState(playersAtom)
   const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom)
   const user = useRecoilValue(userAtom)
@@ -18,7 +19,7 @@ export default function Totals() {
     fetch('/gameinstances')
     .then(res => res.json())
     .then(gameinstances => setGameinstances(gameinstances))
-    }, [user])
+    }, [user, updated])
 
   return (
     <div className="ui full-page">
@@ -28,6 +29,7 @@ export default function Totals() {
         players.map(player => {
           return <PlayerCard
           key = {player.id}
+          id = {player.id}
           name = {player.name}
           scores = {player.scores}
           totalPoints = {player.total_score}
