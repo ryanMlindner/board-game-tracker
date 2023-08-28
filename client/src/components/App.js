@@ -6,6 +6,7 @@ import Home from "./Home.js";
 import NavBar from "./NavBar.js";
 import { useRecoilState } from "recoil";
 import { userAtom } from "./HelperFunctions/atoms.js";
+import Title from "./Title.js";
 import Totals from "./Displays/Totals.js";
 import InputNavBar from "./Inputs/InputNavBar.js";
 import NewSession from "./Inputs/NewSession.js";
@@ -35,7 +36,7 @@ export default function App() {
 
   return (
     <div className="ui full-page">
-			
+			<Title />
       <NavBar />
       <InputNavBar/>
 

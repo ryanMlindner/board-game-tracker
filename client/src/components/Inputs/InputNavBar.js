@@ -8,7 +8,7 @@ export default function InputNavBar(){
 
   return(
       <div className={showExtra ? "" : "hide"}>
-        <div className="ui menu">
+        <div className="ui inverted menu">
           <div className="item">
             <div className="ui button">
               <NavLink activeClassName="current"

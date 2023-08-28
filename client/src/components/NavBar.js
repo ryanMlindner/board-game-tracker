@@ -22,7 +22,7 @@ export default function NavBar(){
 
   return(
       <div>
-        <div className="ui menu">
+        <div className="ui inverted menu">
           <div className="item">
             <div className="ui button">
             <NavLink activeClassName="current"
