@@ -9,7 +9,7 @@ track of all the data they wish to and come back to it whenever they need.
 
 ## ERD
 
-#TODO
+![Relationship Diagram](./client/src/Deps/Phase5ERD.png)
 
 ## File Structure
 
@@ -33,6 +33,19 @@ track of all the data they wish to and come back to it whenever they need.
     ├── models.py
     └── seed.py
 ```
+
+---
+
+## User Stories
+
+As a user:
+ - I can login
+ - I can create a new game session to track scores in
+ - I can create players that will keep track of their attendance and scores at sessions
+ - I can customize players at a session if someone can't make it
+ - I can submit a game and scores to a session
+ - I can look at the current overall placement of the players
+ - I can change any previously submitted scores if there was a mistake
 
 ---
 
@@ -68,23 +81,6 @@ running:
 ```sh
 npm start --prefix client
 ```
-
----
-
-### What Goes into a README?
-
-This README should serve as a template for your own- go through the important
-files in your project and describe what they do. Each file that you edit (you
-can ignore your migration files) should get at least a paragraph. Each function
-should get a small blurb.
-
-You should descibe your application first, and with a good level of detail. The
-rest should be ordered by importance to the user. (Probably routes next, then
-models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
 
 ---
 
