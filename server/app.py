@@ -35,6 +35,19 @@ def get_one(cls, id):
     item = cls.query.filter(cls.id == id).first()
     return item
 
+def delete_by_id(cls, id):
+    """deletes item with id, returns an empty response or returns an error message"""
+    item = cls.query.filter(cls.id == id).first()
+    print(item)
+    if item:
+        print(item.to_dict())
+        db.session.delete(item)
+        db.session.commit()
+        response = make_response({}, 204)
+    else:
+        response = make_response({"errors": "Item not found"}, 404)
+    return response
+
 # Views
 @app.route('/')
 def index():
@@ -161,6 +174,88 @@ class Scores(Resource):
             return response
 
 
+class GamesById(Resource):
+    def delete(self, id):
+        return delete_by_id(Game, id)
+
+
+class PlayersById(Resource):
+    def patch(self, id):
+        json = request.get_json()
+        item = Player.query.filter(Player.id == id).first()
+        print(json)
+        if item:
+            for attr in json:
+                getter = str(attr)
+                setattr(item, attr, json[getter])
+            db.session.add(item)
+            db.session.commit()
+            response = make_response(item.to_dict(), 201)
+        else:
+            response = make_response({"errors": "item not found"}, 404)
+        return response
+    
+    def delete(self, id):
+        return delete_by_id(Player, id)
+
+
+class ScoresById(Resource):
+    def patch(self, id):
+        json = request.get_json()
+        item = Score.query.filter(Score.id == id).first()
+        if item:
+            for attr in json:
+                getter = str(attr)
+                setattr(item, attr, json[getter])
+            db.session.add(item)
+            db.session.commit()
+            response = make_response(item.to_dict(), 201)
+        else:
+            response = make_response({"errors": "item not found"}, 404)
+        return response
+    
+    def delete(self, id):
+        return delete_by_id(Score, id)
+
+
+class GameInstancesById(Resource):
+    def patch(self, id):
+        json = request.get_json()
+        item = GameInstance.query.filter(GameInstance.id == id).first()
+        if item:
+            for attr in json:
+                getter = str(attr)
+                setattr(item, attr, json[getter])
+            db.session.add(item)
+            db.session.commit()
+            response = make_response(item.to_dict(), 201)
+        else:
+            response = make_response({"errors": "item not found"}, 404)
+        return response
+    
+    def delete(self, id):
+        return delete_by_id(GameInstance, id)
+
+
+class SessionsById(Resource):
+    def patch(self, id):
+        json = request.get_json()
+        item = Session.query.filter(Session.id == id).first()
+        if item:
+            for attr in json:
+                getter = str(attr)
+                setattr(item, attr, json[getter])
+            db.session.add(item)
+            db.session.commit()
+            response = make_response(item.to_dict(), 201)
+        else:
+            response = make_response({"errors": "item not found"}, 404)
+        return response
+    
+    def delete(self, id):
+        return delete_by_id(Session, id)
+
+
 #Someday this will change, because its a wonky, slow, confusing way to do this
 #but it works for now
 class Rankings(Resource):
@@ -209,7 +304,6 @@ class CheckAuth(Resource):
     def get(self):
         if session['user_id']:
             user = User.query.filter(User.id == session['user_id']).first()
-            print(user)
             response = make_response(user.to_dict(), 200)
             return response
         else:
@@ -242,6 +336,12 @@ api.add_resource(Sessions, '/sessions', endpoint='sessions')
 api.add_resource(Attendances, '/attendances', endpoint='attendances') #currently unused
 api.add_resource(Players, '/players', endpoint='players')
 api.add_resource(Scores, '/scores', endpoint='scores')
+
+api.add_resource(GamesById, '/gamesbyid/<int:id>', endpoint='gamesbyid')
+api.add_resource(PlayersById, '/playersbyid/<int:id>', endpoint='playersbyid')
+api.add_resource(ScoresById, '/scoresbyid/<int:id>', endpoint='scoresbyid')
+api.add_resource(GameInstancesById, '/gameinstancesbyid/<int:id>', endpoint='gameinstancesbyid')
+api.add_resource(SessionsById, '/sessionsbyid/<int:id>', endpoint='sessionsbyid')
 
 api.add_resource(Rankings, '/rankings', endpoint='rankings')
 

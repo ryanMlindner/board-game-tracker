@@ -29,3 +29,8 @@ export const showExtraAtom = atom({
   key: 'showextraKey',
   default: ''
 })
+
+export const updatedAtom = atom({
+  key: 'updatedKey',
+  default: ''
+})

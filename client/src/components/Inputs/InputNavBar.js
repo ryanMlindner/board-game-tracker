@@ -8,23 +8,11 @@ export default function InputNavBar(){
 
   return(
       <div className={showExtra ? "" : "hide"}>
-        <div className="ui menu">
+        <div className="ui inverted menu">
           <div className="item">
             <div className="ui button">
               <NavLink activeClassName="current"
-              to="/newplayer" exact >New Player</NavLink>
-            </div>
-          </div>
-          <div className="item">
-            <div className="ui button">
-              <NavLink activeClassName="current"
-              to="/newboard" exact>New Board Game</NavLink>
-            </div>
-          </div>
-          <div className="item">
-            <div className="ui button">
-              <NavLink activeClassName="current"
-              to="/newsession" exact>New Session</NavLink>
+              to="/newscore" exact>New Score</NavLink>
             </div>
           </div>
           <div className="item">
@@ -36,7 +24,19 @@ export default function InputNavBar(){
           <div className="item">
             <div className="ui button">
               <NavLink activeClassName="current"
-              to="/newscore" exact>New Score</NavLink>
+              to="/newsession" exact>New Session</NavLink>
+            </div>
+          </div>
+          <div className="item">
+            <div className="ui button">
+              <NavLink activeClassName="current"
+              to="/newplayer" exact >New Player</NavLink>
+            </div>
+          </div>
+          <div className="item">
+            <div className="ui button">
+              <NavLink activeClassName="current"
+              to="/newboard" exact>New Board Game</NavLink>
             </div>
           </div>
         </div>

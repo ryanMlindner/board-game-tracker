@@ -6,6 +6,7 @@ import Home from "./Home.js";
 import NavBar from "./NavBar.js";
 import { useRecoilState } from "recoil";
 import { userAtom } from "./HelperFunctions/atoms.js";
+import Title from "./Title.js";
 import Totals from "./Displays/Totals.js";
 import InputNavBar from "./Inputs/InputNavBar.js";
 import NewSession from "./Inputs/NewSession.js";
@@ -17,9 +18,9 @@ import GameList from "./Displays/GameList.js";
 
 //list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
 //  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
-//TODO maybe different pages for displays? stretch
 //TODO add in average points? can be in rankings to bootstrap like everything else
-//TODO deployment maybe?? I might have time...
+//TODO presentation video
+//and thats it? do double checks later
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
@@ -35,7 +36,7 @@ export default function App() {
 
   return (
     <div className="ui full-page">
-			
+			<Title />
       <NavBar />
       <InputNavBar/>
 

@@ -25,7 +25,7 @@ export default function NewGame() {
   }, [])
 
 
-  function handleSubmit(e) {
+  function handleNewSubmit(e) {
     e.preventDefault();
     const newGameInstance = {
       game_id: gameId,
@@ -53,8 +53,9 @@ export default function NewGame() {
     <div className="ui hidden divider"></div>
     {user ?
       <div>
-      <form className="ui form" onSubmit={handleSubmit}>
-        <h1>Game</h1>
+      <div className="ui inverted segment">
+      <form className="ui form" onSubmit={handleNewSubmit}>
+        <h1>New Played Game</h1>
         <label htmlFor="gameinstance">Game</label>
         <select className="ui search dropdown" onChange={(e) => setGameId(e.target.value)}>
           <option value={null}>Select Game</option>
@@ -75,12 +76,14 @@ export default function NewGame() {
           : <option value={null}>No sessions found</option>
           }
         </select>
+        <div className="ui hidden divider"></div>
         <button className="ui button" type="submit">Add Played Game</button>
       </form>
+      </div>
       <div className="ui hidden divider"></div>
       {id ?
       <div>Last Game Added ID: {id}</div>
-      : <div>No Games added this session PLACEHOLDER</div>
+      : <div>No Games added this session</div>
       }
       </div>
     : <div>Log in to use this feature!</div>

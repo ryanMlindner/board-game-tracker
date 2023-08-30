@@ -1,16 +1,21 @@
 import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { gamesAtom } from "../HelperFunctions/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { gameinstancesAtom, gamesAtom, updatedAtom } from "../HelperFunctions/atoms";
 import GameCard from "./GameCard";
 
 export default function GameList() {
   const [games, setGames] = useRecoilState(gamesAtom)
+  const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom)
+  const updated = useRecoilValue(updatedAtom)
 
   useEffect(() => {
     fetch("/games")
     .then(res => res.json())
     .then(data => setGames(data))
-  }, [])
+    fetch("/gameinstances")
+    .then(res => res.json())
+    .then(data => setGameinstances(data))
+  }, [updated])
 
   return (
     <div className="ui full-page">
@@ -19,7 +24,7 @@ export default function GameList() {
       <div className="ui cards">
         {games ?
           games.map(game => {
-            return <GameCard title = {game.title} publisher = {game.publisher} genre = {game.genre}/>
+            return <GameCard key = {game.id} id= {game.id} title= {game.title} publisher= {game.publisher} genre= {game.genre}/>
           })
         :
         <div>No Games submitted to the database yet!</div>

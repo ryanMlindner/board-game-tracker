@@ -16,13 +16,16 @@ export default function Home() {
     <div className="ui full-page">
       <div className="ui hidden divider"></div>
       {user ? 
-      <div className="ui segment">
+      <div className="ui inverted segment">
         <h2>Welcome, {user.username}</h2>
       </div>
-      : <h4>Sign up or Log in PLACEHOLDER</h4>
+      :
+      <div className="ui inverted segment">
+        <h4>Sign up or Log in to use most features</h4>
+      </div>
       }
       <h1>How To:</h1>
-      <div className="ui large segment">
+      <div className="ui inverted segment">
         Login or Signup, then add <b>New Players</b> and 
         add <b>New Board Games</b> as you see fit. 
         Add <b>New Sessions</b> for nights of games, then add the <b>New Played Games</b> that 
@@ -33,7 +36,7 @@ export default function Home() {
         dependent.
       </div>
       <h4>About the Author:</h4>
-      <div className="ui tertiary segment">
+      <div className="ui inverted segment">
         Ryan Lindner is a software engineer who loves to play board games in his spare time,
         and is pretty terrible at thinking of things to say about himself.
         Perhaps there will be more information here someday, but for now have some links.
