@@ -51,7 +51,6 @@ export default function NewScore() {
     })
   }
 
-  //TODO better to grab player and game instance from score for UI ease
   function handleUpdateSubmit(e) {
     e.preventDefault();
     const updatedScore = {
@@ -118,11 +117,14 @@ export default function NewScore() {
           onChange={(e) => setPlacement(e.target.value)}
         />
         <div className="ui hidden divider"></div>
-        <button className="ui primary button" type="submit">Add Player Score</button>
+        <button className="ui button" type="submit">Add Player Score</button>
       </form>
       </div>
+      {score ?
+      <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
+      : <div>No Scores added this session</div>
+      }
       <div className="ui hidden divider"></div>
-
       <div className="ui inverted segment">
       <form className="ui form" onSubmit={handleUpdateSubmit}>
         <h1>Update Score</h1>
@@ -163,13 +165,9 @@ export default function NewScore() {
           onChange={(e) => setPlacement(e.target.value)}
         />
         <div className="ui hidden divider"></div>
-        <button className="ui primary button" type="submit">Rename Player</button>
+        <button className="ui button" type="submit">Edit Score</button>
       </form>
       </div>
-      {score ?
-      <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
-      : <div>No Scores added this session PLACEHOLDER</div>
-      }
       </div>
     : <div>Log in to use this feature!</div>
     }

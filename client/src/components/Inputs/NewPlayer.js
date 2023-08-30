@@ -78,9 +78,13 @@ export default function NewPlayer() {
           onChange={(e) => setName(e.target.value)}
         />
         <div className="ui hidden divider"></div>
-        <button className="ui primary button" type="submit">Add Player</button>
+        <button className="ui button" type="submit">Add Player</button>
       </form>
       </div>
+      {player ?
+        <div>Last Player added: {player.name}</div>
+        : <div>No Players added this session</div>
+      }
       <div className="ui inverted segment">
       <form className="ui form" onSubmit={handleUpdateSubmit}>
         <h1>Select Player</h1>
@@ -102,13 +106,9 @@ export default function NewPlayer() {
           onChange={(e) => setName(e.target.value)}
         />
         <div className="ui hidden divider"></div>
-        <button className="ui primary button" type="submit">Rename Player</button>
+        <button className="ui button" type="submit">Rename Player</button>
       </form>
       </div>
-      {player ?
-        <div>Last Player added: {player.name}</div>
-        : <div>No Players added this session PLACEHOLDER</div>
-      }
     </div>
     : <div>Log in to use this feature!</div>
     }

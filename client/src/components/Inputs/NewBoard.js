@@ -67,13 +67,13 @@ export default function NewBoard() {
             onChange={(e) => setGenre(e.target.value)}
           />
           <div className="ui hidden divider"></div>
-          <button className="ui primary button" type="submit">Add Game</button>
+          <button className="ui button" type="submit">Add Game</button>
         </form>
       </div>
       <div className="ui hidden divider"></div>
       {game ?
       <div>Last game added: {game.title}</div>
-      : <div>Use the form above to add a game PLACEHOLDER</div>
+      : <div>Use the form above to add a game</div>
       }
     </div>)
 }

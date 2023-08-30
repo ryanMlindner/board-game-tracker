@@ -77,7 +77,7 @@ export default function NewGame() {
           }
         </select>
         <div className="ui hidden divider"></div>
-        <button className="ui primary button" type="submit">Add Played Game</button>
+        <button className="ui button" type="submit">Add Played Game</button>
       </form>
       </div>
       <div className="ui hidden divider"></div>

@@ -32,6 +32,18 @@ export default function NavBar(){
           <div className="item">
             <div className="ui button">
             <NavLink activeClassName="current"
+            to="/totals" exact>Player Scores</NavLink>
+            </div>
+          </div>
+          <div className="item">
+            <div className="ui button">
+            <NavLink activeClassName="current"
+            to="/gamelist" exact>Game List</NavLink>
+            </div>
+          </div>
+          <div className="item">
+            <div className="ui button">
+            <NavLink activeClassName="current"
             to="/signup" exact>Sign Up</NavLink>
             </div>
           </div>
@@ -39,18 +51,6 @@ export default function NavBar(){
             <div className="ui button">
               <NavLink activeClassName="current"
               to="/login" exact>Log In</NavLink>
-            </div>
-          </div>
-          <div className="item">
-            <div className="ui button">
-            <NavLink activeClassName="current"
-            to="/totals" exact>Totals</NavLink>
-            </div>
-          </div>
-          <div className="item">
-            <div className="ui button">
-            <NavLink activeClassName="current"
-            to="/gamelist" exact>Game List</NavLink>
             </div>
           </div>
           <div className="item">

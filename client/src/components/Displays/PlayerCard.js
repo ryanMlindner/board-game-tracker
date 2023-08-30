@@ -20,15 +20,16 @@ export default function PlayerCard({ id, name, scores, totalPoints, wins, averag
     <div className="ui raised card">
       <div className="content">
         <div className="header">Name: {name}</div>
-        <div className="meta">Total Points: {totalPoints} Wins: {wins} </div>
-        <div className="meta">Average Placement: {averagePlacement} </div>
-        <button className="ui secondary button" onClick={handleClick}>Delete Player</button>
+        <div className="content">Total Points: {totalPoints} Wins: {wins} </div>
+        <div className="content">Average Placement: {averagePlacement} </div>
+        <button className="ui button" onClick={handleClick}>Delete Player</button>
       </div>
-      <div className="extra content">
+      <div className="content">
         {scores ?
         scores.map(score => {
           return <ScoreCard
           key={score.id}
+          id={score.id}
           placement={score.placement}
           points={score.points}
           gameInstance={gameinstances[score.game_instance_id - 1]}
