@@ -41,10 +41,16 @@ export default function Home() {
         and is pretty terrible at thinking of things to say about himself.
         Perhaps there will be more information here someday, but for now have some links.
       </div>
-      <div className="ui grid">
-        <a className="five wide column" href="https://github.com/ryanMlindner">Github</a>
-        <a className="five wide column" href="https://www.linkedin.com/in/ryan-lindner-5697b1264/">LinkedIn</a>
-        <a className="five wide column" href="https://medium.com/@ryan.m.lindner">Blog</a>
+      <div className="ui horizontal segments">
+        <div className="ui inverted segment">
+          <a href="https://github.com/ryanMlindner">Github</a>
+        </div>
+        <div className="ui segment">
+        <a href="https://www.linkedin.com/in/ryan-lindner-5697b1264/">LinkedIn</a>
+        </div>
+        <div className="ui segment">
+        <a href="https://medium.com/@ryan.m.lindner">Blog</a>
+        </div> 
       </div>
     </div>
   )
