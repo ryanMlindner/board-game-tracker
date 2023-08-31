@@ -28,7 +28,7 @@ export default function Totals() {
       sortedList = tempList.sort((a,b) => b.total_score - a.total_score)
     }
     if (sortBy === "average_placement") {
-      sortedList = tempList.sort((a,b) => b.average_placement - a.average_placement)
+      sortedList = tempList.sort((a,b) => a.average_placement - b.average_placement)
     }
     if (sortBy === "wins") {
       sortedList = tempList.sort((a,b) => b.wins - a.wins)

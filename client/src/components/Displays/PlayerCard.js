@@ -19,9 +19,14 @@ export default function PlayerCard({ id, name, scores, totalPoints, wins, averag
   return (
     <div className="ui raised card">
       <div className="content">
-        <div className="header">Name: {name}</div>
-        <div className="content">Total Points: {totalPoints} Wins: {wins} </div>
-        <div className="content">Average Placement: {averagePlacement.toFixed(2)} </div>
+        <div className="header">{name}</div>
+        <div className="content">Total Points: {totalPoints} | Wins: {wins} </div>
+        <div className="content">Average Placement: 
+          {averagePlacement ?
+          averagePlacement.toFixed(2)
+          : null
+          } 
+        </div>
         <button className="ui button" onClick={handleClick}>Delete Player</button>
       </div>
       <div className="content">
