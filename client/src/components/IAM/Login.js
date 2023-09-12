@@ -23,35 +23,39 @@ export default function Login() {
   }
 
   return (
-    <div className="ui full-page">
-      <div className="ui hidden divider"></div>
-      <div className="ui inverted segment">
-        <form className="ui form"onSubmit={handleSubmit}>
-          <h1>Log In</h1>
+    <div className="full-page">
+      {user ?
+      <h3>Logged in: {user.username} Use the menu button to log out</h3>
+      : 
+      <>
+      <h2>Log In</h2>
+      <form className=""onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="four columns">
           <label htmlFor="username">Username</label>
-          <input
+          <input className="u-full-width"
             type="text"
             id="username"
             autoComplete="off"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          </div>
+          <div className="four columns">
           <label htmlFor="password">Password</label>
-          <input
+          <input className="u-full-width"
             type="password"
             id="password"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
           />
-          <div className="ui hidden divider"></div>
-          <button className="ui primary button" type="submit">Login</button>
-        </form>
-      </div>
-      <div className="ui hidden divider"></div>
-      {user ?
-      <h3>Logged in: {user.username}</h3>
-      : <div>Use the form above to log in!</div>
+          </div>
+        </div>
+        
+        <button className="button-primary" type="submit">Login</button>
+      </form>
+      </>
       }
     </div>
   )
