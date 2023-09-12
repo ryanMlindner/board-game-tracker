@@ -16,11 +16,8 @@ import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 
-//list::: aggregate games(placements per game), aggregate players(ranking by total, average, etc.)
-//  aggregate sessions(points per session, attendance), total games(admin view for filling page space)
-//TODO add in average points? can be in rankings to bootstrap like everything else
-//TODO presentation video
-//and thats it? do double checks later
+//TODO UPDATE STYLES IN DISPLAYS, IAM, INPUTS --done navbars
+//TODO refactor input ui for scores **after css
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
@@ -75,4 +72,4 @@ export default function App() {
     </div>
   )
 }
-//TODO more routes as needed
+
