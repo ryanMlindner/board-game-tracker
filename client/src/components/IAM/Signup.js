@@ -55,7 +55,7 @@ export default function Signup() {
       <div className="ui hidden divider"></div>
       {user ?
       <h3>Signed up: {user.username}</h3>
-      : <div>Use the form above to log in PLACEHOLDER</div>
+      : <div>Use the form above to sign up!</div>
       }
     </div>
   )

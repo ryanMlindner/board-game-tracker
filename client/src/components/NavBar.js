@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userAtom, showExtraAtom } from "./HelperFunctions/atoms";
@@ -21,45 +21,45 @@ export default function NavBar(){
   }
 
   return(
-      <div>
-        <div className="ui inverted menu">
-          <div className="item">
-            <div className="ui button">
+      <div className="container">
+        <div className="row">
+          <div className="one column">
+            <div className="">
             <NavLink activeClassName="current"
             to="/" exact >Home</NavLink>
             </div>
           </div>
-          <div className="item">
-            <div className="ui button">
+          <div className="two columns">
+            <div className="">
             <NavLink activeClassName="current"
             to="/totals" exact>Player Scores</NavLink>
             </div>
           </div>
-          <div className="item">
-            <div className="ui button">
+          <div className="two columns">
+            <div className="">
             <NavLink activeClassName="current"
             to="/gamelist" exact>Game List</NavLink>
             </div>
           </div>
-          <div className="item">
-            <div className="ui button">
+          <div className="two columns">
+            <div className="">
             <NavLink activeClassName="current"
             to="/signup" exact>Sign Up</NavLink>
             </div>
           </div>
-          <div className="item">
-            <div className="ui button">
+          <div className="one column">
+            <div className="">
               <NavLink activeClassName="current"
               to="/login" exact>Log In</NavLink>
             </div>
           </div>
-          <div className="item">
-            <div className="ui grey button"
+          <div className="two columns">
+            <div className="button"
             onClick={handleLogOutClick}>Log Out</div>
           </div>
-          <div className="item">
-            <div className="ui grey button"
-            onClick={handleClick}>Show Input Menu</div>
+          <div className="two columns">
+            <div className="button"
+            onClick={handleClick}>Input Menu</div>
           </div>
         </div>
       </div>
