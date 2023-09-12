@@ -16,7 +16,7 @@ import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 
-//TODO UPDATE STYLES IN DISPLAYS, IAM, INPUTS --done navbars
+//TODO UPDATE STYLES IN DISPLAYS, INPUTS --done navbars, IAM
 //TODO refactor input ui for scores **after css
 
 export default function App() {
