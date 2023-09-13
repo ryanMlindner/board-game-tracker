@@ -14,7 +14,7 @@ export default function NewSession() {
   const [sessions, setSessions] = useRecoilState(sessionsAtom);
   const [attendances, setAttendances] = useRecoilState(attendancesAtom);
   
-  let playersInSession = [];
+  let playersInSession = [];//add to state
 
   useEffect(() => {
     fetch("/players")
