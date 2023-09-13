@@ -32,7 +32,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="ui full-page">
+    <div className="full-page">
 			<Title />
       <NavBar />
       <InputNavBar/>

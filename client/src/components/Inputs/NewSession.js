@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { sessionsAtom, userAtom } from "../HelperFunctions/atoms";
+import React, { useState, useEffect } from "react";
+import { playersAtom, sessionsAtom, updatedAtom, userAtom } from "../HelperFunctions/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
+import PlayerButton from "./PlayerButton";
 
 
 export default function NewSession() {
@@ -8,8 +9,18 @@ export default function NewSession() {
   const [session, setSession] = useState(null);
 
   const user = useRecoilValue(userAtom);
+  const updated = useRecoilValue(updatedAtom);
+  const [players, setPlayers] = useRecoilState(playersAtom);
   const [sessions, setSessions] = useRecoilState(sessionsAtom);
   
+  let playersInSession = [];
+
+  useEffect(() => {
+    fetch("/players")
+    .then(res => res.json())
+    .then(data => setPlayers(data))
+  }, [updated])
+
   function handleSubmit(e) {
     const newSession = {
       date: date,
@@ -34,14 +45,12 @@ export default function NewSession() {
   }
 
   return (
-    <div className="ui full-page">
+    <div className="full-page">
       <div className="ui hidden divider"></div>
       {user ?
       <div>
-        
-      <div className="ui inverted segment">
         <form className="ui form" onSubmit={handleSubmit}>
-          <h1>New Session</h1>
+          <h1>New Sesh</h1>
           <label htmlFor="date">Date</label>
           <input
             type="text"
@@ -51,10 +60,19 @@ export default function NewSession() {
             placeholder="mm/dd/yyyy"
             onChange={(e) => setDate(e.target.value)}
           />
-          <div className="ui hidden divider"></div>
+          <div className="container">
+            <div className="row">
+            {players ?
+            players.map(player => {
+              return <PlayerButton key = {player.id} player = {player}/>
+            })
+            :
+            <h3>No Players added for this user, Add players first!</h3>
+            }
+            </div>
+          </div>
           <button className="ui primary button" type="submit">Add Session</button>
         </form>
-      </div>
       <div className="ui hidden divider"></div>
       {session ?
       <div>Last session added: {session.date}</div>

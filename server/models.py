@@ -107,7 +107,7 @@ class Attendance(db.Model, SerializerMixin):
     serialize_rules = ('-player', '-session')
 
     id = db.Column(db.Integer, primary_key=True)
-    player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id')) 
     session_id = db.Column(db.Integer, db.ForeignKey('sessions.id'))
 
 
