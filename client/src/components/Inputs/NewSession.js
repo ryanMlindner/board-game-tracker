@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { playersAtom, sessionsAtom, updatedAtom, userAtom } from "../HelperFunctions/atoms";
+import { attendancesAtom, playersAtom, sessionsAtom, updatedAtom, userAtom } from "../HelperFunctions/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import PlayerButton from "./PlayerButton";
 
@@ -12,6 +12,7 @@ export default function NewSession() {
   const updated = useRecoilValue(updatedAtom);
   const [players, setPlayers] = useRecoilState(playersAtom);
   const [sessions, setSessions] = useRecoilState(sessionsAtom);
+  const [attendances, setAttendances] = useRecoilState(attendancesAtom);
   
   let playersInSession = [];
 
@@ -39,6 +40,27 @@ export default function NewSession() {
         res.json().then(session => {
           setSession(session)
           setSessions([...sessions, session])
+
+          playersInSession.forEach((player) => {
+            const newAttendance = {
+              player_id : player.id,
+              session_id : session.id,
+            }
+            fetch("/attendances", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newAttendance),
+            })
+            .then(res => {
+              if (res.ok) {
+                res.json().then(attendance => {
+                  setAttendances([...attendances, attendance])
+                  })
+                }
+            })
+          })
         })
       }
     })
