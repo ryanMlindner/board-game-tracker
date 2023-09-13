@@ -34,3 +34,8 @@ export const updatedAtom = atom({
   key: 'updatedKey',
   default: ''
 })
+
+export const attendancesAtom = atom({
+  key: 'attendancesKey',
+  default: ''
+})

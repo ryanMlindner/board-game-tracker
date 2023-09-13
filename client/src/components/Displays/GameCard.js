@@ -3,11 +3,11 @@ import React from "react";
 export default function GameCard({ id, title, publisher, genre}) {
 
   return (
-    <div className="ui inverted card">
-      <div className="content">
-        <div className="header">Title: {title}</div>
-        <div className="meta">Publisher: {publisher}</div>
-        <div className="meta">Genre: {genre} </div>
+    <div className="three columns">
+      <div className="">
+        Title: {title} | 
+        Publisher: {publisher} |
+        Genre: {genre}
       </div>
     </div>
   )

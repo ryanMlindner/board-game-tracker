@@ -18,17 +18,19 @@ export default function GameList() {
   }, [updated])
 
   return (
-    <div className="ui full-page">
+    <div className="full-page">
       <div className="ui hidden divider"></div>
-      <div className="ui header">List of Games in the database:</div>
-      <div className="ui cards">
-        {games ?
-          games.map(game => {
-            return <GameCard key = {game.id} id= {game.id} title= {game.title} publisher= {game.publisher} genre= {game.genre}/>
-          })
-        :
-        <div>No Games submitted to the database yet!</div>
-        }
+      <div className="header">List of Games in the database:</div>
+      <div className="container">
+        <div className="row">
+          {games ?
+            games.map(game => {
+              return <GameCard key = {game.id} id= {game.id} title= {game.title} publisher= {game.publisher} genre= {game.genre}/>
+            })
+          :
+          <div>No Games submitted to the database yet!</div>
+          }
+        </div>
       </div>
     </div>
   )
