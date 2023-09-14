@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { gameinstancesAtom, playersAtom, userAtom } from "../HelperFunctions/atoms";
 
+//TODO set up modular inputs for # of players in session == # of score input components
+
 export default function NewScore() {
   const user = useRecoilValue(userAtom);
   const [players, setPlayers] = useRecoilState(playersAtom);
@@ -15,6 +17,12 @@ export default function NewScore() {
   const [score, setScore] = useState(null);
 
   const [updated, setUpdated] = useState(false);
+
+  //TODO array to hold each set of player scores that gets submitted in the form, then use
+  //array to modularize the posts
+
+  //TODO get list of players for game from either gameinstance->session or from session?
+  //session has a list of gameinstances get from there -> select session then select game
   
   useEffect(() => {
     fetch('/gameinstances')
@@ -28,6 +36,7 @@ export default function NewScore() {
 
   function handleNewSubmit(e) {
     e.preventDefault();
+    //TODO modularize for each player score
     const newScore = {
       game_instance_id: gameId,
       player_id: playerId,
@@ -92,16 +101,7 @@ export default function NewScore() {
           : <option value={null}>No games found</option>
           }
         </select>
-        <label htmlFor="player">Player</label>
-        <select className="ui search dropdown" onChange={(e) => setPlayerId(e.target.value)}>
-          <option value={null}>Select Player</option>
-          {players ?
-            players.map(player => {
-              return <option key={player.id} value={player.id}>{player.name}</option>
-            })
-          : <option value={null}>No players found</option>
-          }
-        </select>
+
         <label htmlFor="points">Points</label>
         <input
           type="text"
