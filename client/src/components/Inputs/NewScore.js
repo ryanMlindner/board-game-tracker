@@ -18,11 +18,32 @@ export default function NewScore() {
 
   const [updated, setUpdated] = useState(false);
 
+  let scoresArray = [];
+
   //TODO array to hold each set of player scores that gets submitted in the form, then use
   //array to modularize the posts
 
   //TODO get list of players for game from either gameinstance->session or from session?
   //session has a list of gameinstances get from there -> select session then select game
+
+  function handleChange(value, target, id) {
+    let playerScore = scoresArray.filter((score) => score.id == id);
+    if (playerScore == []) {
+      playerScore = {
+        id : id,
+        points : 0,
+        placement : 0
+      }
+      scoresArray.push(playerScore)
+    }
+    if (target === "points") {
+      playerScore.points = value
+    }
+    if (target === "placement") {
+      playerScore.placement = value
+    }
+    console.log(scoresArray)
+  }
   
   useEffect(() => {
     fetch('/gameinstances')
