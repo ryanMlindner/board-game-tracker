@@ -103,6 +103,7 @@ export default function NewScore() {
     })
   }
 
+  //TODO refactor to select session -> game instance -> show all players at that game that need scores
   return (
     <div className="ui full-page">
     <div className="ui hidden divider"></div>
@@ -160,7 +161,7 @@ export default function NewScore() {
           : <option value={null}>No games found</option>
           }
         </select>
-        <label htmlFor="gameinstance">Player</label>
+        <label htmlFor="player">Player</label>
         <select className="ui search dropdown" onChange={(e) => setPlayerId(e.target.value)}>
           <option value={null}>Select Player</option>
           {players ?
@@ -170,10 +171,10 @@ export default function NewScore() {
           : <option value={null}>No players found</option>
           }
         </select>
-        <label htmlFor="name">Points</label>
+        <label htmlFor="points">Points</label>
         <input
           type="text"
-          id="name"
+          id="points"
           autoComplete="off"
           value={points}
           onChange={(e) => setPoints(e.target.value)}
