@@ -14,7 +14,7 @@ export default function NewSession() {
   const [sessions, setSessions] = useRecoilState(sessionsAtom);
   const [attendances, setAttendances] = useRecoilState(attendancesAtom);
   
-  let playersInSession = [];//add to state
+  const [playersInSession, setPlayersInSession] = useState([]);
 
   useEffect(() => {
     fetch("/players")
@@ -67,13 +67,13 @@ export default function NewSession() {
   }
 
   function addToSession(player) {
-    playersInSession.push(player);
-    console.log(playersInSession);
+    setPlayersInSession([...playersInSession, player]);
   }
 
   function removeFromSession(player) {
-    playersInSession.pop(player);
-    console.log(playersInSession);
+    let tempArray = [...playersInSession];
+    tempArray.pop(player);
+    setPlayersInSession(tempArray);
   }
 
   return (

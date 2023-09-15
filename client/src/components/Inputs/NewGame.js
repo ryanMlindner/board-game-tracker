@@ -66,7 +66,7 @@ export default function NewGame() {
           : <option value={null}>No games found</option>
           }
         </select>
-        <label htmlFor="gameinstance">Session</label>
+        <label htmlFor="session">Session</label>
         <select className="ui search dropdown" onChange={(e) => setSessionId(e.target.value)}>
           <option value={null}>Select Session</option>
           {sessions ?
