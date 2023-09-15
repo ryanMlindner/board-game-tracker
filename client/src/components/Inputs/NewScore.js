@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { gameinstancesAtom, playersAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
-
+import ScoreInputModel from "./ScoreInputModel";
 //TODO set up modular inputs for # of players in session == # of score input components
 
 export default function NewScore() {
@@ -10,9 +10,6 @@ export default function NewScore() {
   const [sessions, setSessions] = useRecoilState(sessionsAtom);
 
   const [session, setSession] = useState(null)
-
-  const [points, setPoints] = useState(0);
-  const [placement, setPlacement] = useState(0);
   
   const [gameId, setGameId] = useState(null);
   const [playerId, setPlayerId] = useState(null);
@@ -25,8 +22,8 @@ export default function NewScore() {
 
   let gameinstance = null;
 
-  //TODO array to hold each set of player scores that gets submitted in the form, then use
-  //array to modularize the posts
+  //TODO array of player ids for post, get names of players from players in a way
+  //that doesnt completely suck
 
   //TODO get list of players for game from either gameinstance->session or from session?
   //session has a list of gameinstances get from there -> select session then select game
@@ -63,48 +60,48 @@ export default function NewScore() {
   function handleNewSubmit(e) {
     e.preventDefault();
     //TODO modularize for each player score
-    const newScore = {
-      game_instance_id: gameId,
-      player_id: playerId,
-      points: points,
-      placement: placement
-    }
-    fetch("/scores", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newScore),
-    })
-    .then(res => {
-      if (res.ok) {
-        res.json().then((score) => {
-          setScore(score)
-        })
-      }
-    })
+    // const newScore = {
+    //   game_instance_id: gameId,
+    //   player_id: playerId,
+    //   points: points,
+    //   placement: placement
+    // }
+    // fetch("/scores", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(newScore),
+    // })
+    // .then(res => {
+    //   if (res.ok) {
+    //     res.json().then((score) => {
+    //       setScore(score)
+    //     })
+    //   }
+    // })
   }
 
   function handleUpdateSubmit(e) {
     e.preventDefault();
-    const updatedScore = {
-      player_id: playerId,
-      game_instance_id: gameId,
-      points: points,
-      placement: placement
-    }
-    fetch(`/scoresbyid/${playerId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedScore)
-    })
-    .then(res => {
-      if (res.ok) {
-        setUpdated(!updated)
-      }
-    })
+    // const updatedScore = {
+    //   player_id: playerId,
+    //   game_instance_id: gameId,
+    //   points: points,
+    //   placement: placement
+    // }
+    // fetch(`/scoresbyid/${playerId}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(updatedScore)
+    // })
+    // .then(res => {
+    //   if (res.ok) {
+    //     setUpdated(!updated)
+    //   }
+    // })
   }
 
   function checkGameInstances() {
@@ -117,7 +114,7 @@ export default function NewScore() {
     else return false
   }
 
-  //TODO refactor to select session -> game instance -> show all players at that game that need scores
+  //TODO make scoreinputmodel work, skeleton is all there
   return (
     <div className="ui full-page">
     <div className="ui hidden divider"></div>
@@ -150,12 +147,10 @@ export default function NewScore() {
           </select>
         <form>
           <div className="row">
-          <div className="four columns">
+            <div className="four columns">
+              {}
+            </div>
           </div>
-          <div className="four columns">
-          
-          </div>
-        </div>
         </form>
       {score ?
       <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>

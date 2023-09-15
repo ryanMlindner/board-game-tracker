@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-export default function ScoreInputModel({id , handleChange}) {
+export default function ScoreInputModel({id , player, handleChange}) {
 
   //TODO unknown if this will work, dont want to have to put everything in the previous model
   //but if we have to i guess its fine
+  const [points, setPoints] = useState(0);
+  const [placement, setPlacement] = useState(0);
 
   return (
     <div>
@@ -12,14 +14,14 @@ export default function ScoreInputModel({id , handleChange}) {
           type="text"
           id="points"
           value={points}
-          onChange={(e) => handleChange(e.target.value, "points", id)}
+          onChange={(e) => setPoints(e.target.value)}
         />
       <label htmlFor="placement">Placement</label>
         <input
           type="text"
           id="placement"
           value={placement}
-          onChange={(e) => handleChange(e.target.value, "placement", id)}
+          onChange={(e) => setPlacement(e.target.value)}
         />
     </div>
   )
