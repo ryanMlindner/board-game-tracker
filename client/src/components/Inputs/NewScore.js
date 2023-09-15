@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { gameinstancesAtom, playersAtom, userAtom } from "../HelperFunctions/atoms";
+import { gameinstancesAtom, playersAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
 
 //TODO set up modular inputs for # of players in session == # of score input components
 
 export default function NewScore() {
   const user = useRecoilValue(userAtom);
   const [players, setPlayers] = useRecoilState(playersAtom);
-  const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom);
+  const [sessions, setSessions] = useRecoilState(sessionsAtom);
+
+  const [session, setSession] = useState(null)
+
   const [points, setPoints] = useState(0);
   const [placement, setPlacement] = useState(0);
   
@@ -19,6 +22,8 @@ export default function NewScore() {
   const [updated, setUpdated] = useState(false);
 
   let scoresArray = [];
+
+  let gameinstance = null;
 
   //TODO array to hold each set of player scores that gets submitted in the form, then use
   //array to modularize the posts
@@ -46,13 +51,13 @@ export default function NewScore() {
   }
   
   useEffect(() => {
-    fetch('/gameinstances')
-    .then(res => res.json())
-    .then(gameinstances => setGameinstances(gameinstances))
-
     fetch("/players")
     .then(res => res.json())
     .then(data => setPlayers(data))
+
+    fetch("/sessions")
+    .then(res => res.json())
+    .then(data => setSessions(data))
   }, [updated])
 
   function handleNewSubmit(e) {
@@ -74,7 +79,6 @@ export default function NewScore() {
     .then(res => {
       if (res.ok) {
         res.json().then((score) => {
-          console.log(score)
           setScore(score)
         })
       }
@@ -103,45 +107,56 @@ export default function NewScore() {
     })
   }
 
+  function checkGameInstances() {
+    console.log(sessions[session - 1])
+    if (sessions[session - 1]) {
+      if (sessions[session - 1].game_instances.length > 0) {
+        return true
+      } 
+    }
+    else return false
+  }
+
   //TODO refactor to select session -> game instance -> show all players at that game that need scores
   return (
     <div className="ui full-page">
     <div className="ui hidden divider"></div>
     {user ?
       <div>
-        <div className="ui inverted segment">
-      <form className="ui form" onSubmit={handleNewSubmit}>
-        <h1>New Score</h1>
-        <label htmlFor="gameinstance">Game</label>
-        <select className="ui search dropdown" onChange={(e) => setGameId(e.target.value)}>
-          <option value={null}>Select Game</option>
-          {gameinstances ?
-            gameinstances.map(gameinstance => {
-              return <option key={gameinstance.id} 
-              value={gameinstance.id}>{gameinstance.game.title}, {gameinstance.session.date}</option>
-            })
-          : <option value={null}>No games found</option>
-          }
-        </select>
-
-        <label htmlFor="points">Points</label>
-        <input
-          type="text"
-          id="points"
-          value={points}
-          onChange={(e) => setPoints(e.target.value)}
-        />
-        <label htmlFor="placement">Placement</label>
-        <input
-          type="text"
-          id="placement"
-          value={placement}
-          onChange={(e) => setPlacement(e.target.value)}
-        />
-        <div className="ui hidden divider"></div>
-        <button className="ui button" type="submit">Add Player Score</button>
-      </form>
-      </div>
+        <div>
+          <label htmlFor="session">Session</label>
+          <select className="" onChange={(e) => setSession(e.target.value)}>
+            <option value={null}>Select Session</option>
+            {sessions ?
+              sessions.map(session => {
+                return <option key={session.id} 
+                value={session.id}>{session.date}</option>
+              })
+            : <option value={null}>No sessions found</option>
+            }
+          </select>
+        </div>
+        <div>-</div>
+          <label htmlFor="gameinstance">Game</label>
+          <select className="" onChange={(e) => {gameinstance = e.target.value}}>
+            <option value={null}>Select Game</option>
+            {checkGameInstances() ?
+              sessions[session - 1].game_instances.map(gameinstance => {
+                return <option key={gameinstance.id} 
+                value={gameinstance.id}>{gameinstance.game.title}</option>
+              })
+            : <option value={null}>No games found</option>
+            }
+          </select>
+        <form>
+          <div className="row">
+          <div className="four columns">
+          </div>
+          <div className="four columns">
+          
+          </div>
+        </div>
+        </form>
       {score ?
       <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
       : <div>No Scores added this session</div>
@@ -151,42 +166,6 @@ export default function NewScore() {
       <form className="ui form" onSubmit={handleUpdateSubmit}>
         <h1>Update Score</h1>
         <label htmlFor="gameinstance">Game</label>
-        <select className="ui search dropdown" onChange={(e) => setGameId(e.target.value)}>
-          <option value={null}>Select Game</option>
-          {gameinstances ?
-            gameinstances.map(gameinstance => {
-              return <option key={gameinstance.id} 
-              value={gameinstance.id}>{gameinstance.game.title}, {gameinstance.session.date}</option>
-            })
-          : <option value={null}>No games found</option>
-          }
-        </select>
-        <label htmlFor="player">Player</label>
-        <select className="ui search dropdown" onChange={(e) => setPlayerId(e.target.value)}>
-          <option value={null}>Select Player</option>
-          {players ?
-            players.map(player => {
-              return <option key={player.id} value={player.id}>{player.name}</option>
-            })
-          : <option value={null}>No players found</option>
-          }
-        </select>
-        <label htmlFor="points">Points</label>
-        <input
-          type="text"
-          id="points"
-          autoComplete="off"
-          value={points}
-          onChange={(e) => setPoints(e.target.value)}
-        />
-        <label htmlFor="placement">Placement</label>
-        <input
-          type="text"
-          id="placement"
-          value={placement}
-          onChange={(e) => setPlacement(e.target.value)}
-        />
-        <div className="ui hidden divider"></div>
         <button className="ui button" type="submit">Edit Score</button>
       </form>
       </div>
