@@ -82,41 +82,47 @@ export default function NewSession() {
       {user ?
       <div>
         <form className="" onSubmit={handleSubmit}>
-          <h1>New Sesh</h1>
-          <div className="row">
-            <div className="6 columns">
-              <label htmlFor="date">Date</label>
-              <input
-                type="text"
-                id="date"
-                autoComplete="off"
-                value={date}
-                placeholder="mm/dd/yyyy"
-                onChange={(e) => setDate(e.target.value)}
-              />
+          <h1>New Session</h1>
+          <h5>Input date of session, then select players who attended, then press Add Session!</h5>
+          <div className="container">
+            <div className="row">
+              <div className="four columns">
+                <label htmlFor="date">Date</label>
+                <input
+                  type="text"
+                  id="date"
+                  autoComplete="off"
+                  value={date}
+                  placeholder="mm/dd/yyyy"
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </div>
             </div>
           </div>
-          <button className="button-primary" type="submit">Add Session</button>
-        </form>
-        <div className="container">
-          <div className="row">
-            {players ?
-            players.map(player => {
-              return <PlayerButton 
-              key = {player.id} 
-              player = {player} 
-              addToSession={addToSession}
-              removeFromSession={removeFromSession}/>
-            })
-            :
-            <h3>No Players added for this user, Add players first!</h3>
-            }
+          <div className="container">
+            <div className="row">
+              <label htmlFor="players">Players</label>
+              {players ?
+              players.map(player => {
+                return <PlayerButton 
+                key = {player.id} 
+                player = {player} 
+                addToSession={addToSession}
+                removeFromSession={removeFromSession}/>
+              })
+              :
+              <h3>No Players added for this user, Add players first!</h3>
+              }
+            </div>
           </div>
-        </div>
+          <div className="container">
+            <button className="button-primary" type="submit">Add Session</button>
+          </div>
+        </form>
       <div className="ui hidden divider"></div>
       {session ?
-      <div>Last session added: {session.date}</div>
-      : <div>no session added this session PLACEHOLDER</div>
+      <div className="container">Last session added: {session.date}</div>
+      : <div className="container">No Session added this Session!</div>
       }
 
       </div>

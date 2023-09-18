@@ -10,8 +10,8 @@ export default function PlayerButton( { player, addToSession, removeFromSession 
     }
 
     return (
-        <div className="two columns">
-            <button className={inSession ? "button-primary" : "button"}
+        <div className="three columns">
+            <button className={inSession ? "button selected" : "button"}
              onClick={handleClick}>{player.name}</button>
         </div>
     )

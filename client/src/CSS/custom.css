@@ -1,12 +1,15 @@
 .full-page {
-	margin-left: 4%;
-	margin-right: 4%;
+	margin-left: 2%;
+	margin-right: 2%;
 }
 
 .current {
 	color: gray;
 }
 
+.selected {
+	background-color: #999;
+}
 
 .hide {
   display: none;
