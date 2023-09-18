@@ -18,14 +18,6 @@ export default function NewScore() {
 
   let scoresArray = [];
 
-  // console.log("players")
-  // console.log(players)
-  // console.log("session")
-  // console.log(sessions[session - 1])
-
-  //TODO array of player ids for post, get players from players in a way
-  //that doesnt completely suck (attendances!)
-
   function getPlayerSet() {
     let sessionPlayerIds = []
     sessions[session - 1].attendances.forEach(attendance => {
@@ -40,8 +32,15 @@ export default function NewScore() {
   }
 
   function handleChange(id, points, placement) {
-    let playerScore = scoresArray.filter((score) => score.id == id);
-    
+    if (!scoresArray.find(score => score.id === id)) {
+      let playerScore = {
+        id : id,
+        points : points,
+        placement : placement
+      }
+      console.log(playerScore)
+      scoresArray.push(playerScore)
+    }
     console.log(scoresArray)
   }
   
@@ -57,27 +56,29 @@ export default function NewScore() {
 
   function handleNewSubmit(e) {
     e.preventDefault();
-    //TODO modularize for each player score
-    // const newScore = {
-    //   game_instance_id: gameId,
-    //   player_id: playerId,
-    //   points: points,
-    //   placement: placement
-    // }
-    // fetch("/scores", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newScore),
-    // })
-    // .then(res => {
-    //   if (res.ok) {
-    //     res.json().then((score) => {
-    //       setScore(score)
-    //     })
-    //   }
-    // })
+    scoresArray.forEach(score => {
+      console.log(score)
+      const newScore = {
+          game_instance_id: gameinstance,
+          player_id: score.id,
+          points: score.points,
+          placement: score.placement
+        }
+        fetch("/scores", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newScore),
+    })
+    .then(res => {
+      if (res.ok) {
+        res.json().then((score) => {
+          setScore(score)
+        })
+      }
+    })
+    })
   }
 
   function handleUpdateSubmit(e) {
@@ -153,7 +154,9 @@ export default function NewScore() {
                 key={player.id} id={player.id}
                 player={player} handleChange={handleChange}/>
               })
-              : <div>No players found for this user, add players in New Player!</div>
+              : <div>No players found for this user,
+                make sure that the session is selected, 
+                or add players in New Player!</div>
               }
             </div>
           </div>
@@ -164,17 +167,9 @@ export default function NewScore() {
           />
         </form>
       {score ?
-      <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
+      <div>Scores Successfully Submitted!</div>
       : <div>No Scores added this session</div>
       }
-      <div className="ui hidden divider"></div>
-      <div className="ui inverted segment">
-      <form className="ui form" onSubmit={handleUpdateSubmit}>
-        <h1>Update Score</h1>
-        <label htmlFor="gameinstance">Game</label>
-        <button className="ui button" type="submit">Edit Score</button>
-      </form>
-      </div>
       </div>
     : <div>Log in to use this feature!</div>
     }

@@ -23,8 +23,7 @@ export default function ScoreInputModel({id , player, handleChange}) {
               type="text"
               id="points"
               value={points}
-              placeholder="0"
-              onChange={(e) => setPoints(e.target.value)}
+              onChange={(e) => setPoints(parseInt(e.target.value))}
             />
           </div>
           <div className="six columns">
@@ -33,8 +32,7 @@ export default function ScoreInputModel({id , player, handleChange}) {
               type="text"
               id="placement"
               value={placement}
-              placeholder=""
-              onChange={(e) => setPlacement(e.target.value)}
+              onChange={(e) => setPlacement(parseInt(e.target.value))}
             />
           </div>
         </div>
