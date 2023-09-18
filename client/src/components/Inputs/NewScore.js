@@ -119,6 +119,7 @@ export default function NewScore() {
     <div className="ui hidden divider"></div>
     {user ?
       <div>
+        <h1>New Scores</h1>
         <div className="row">
           <div className="six columns">
             <label htmlFor="session">Session</label>
@@ -160,10 +161,11 @@ export default function NewScore() {
               }
             </div>
           </div>
+        <h4>Make sure all scores are confirmed and the game is selected!</h4>
         <form onSubmit={handleNewSubmit}>
           <input className="button-primary" 
           type="submit" 
-          value="Submit (ensure all scores are correct!)"
+          value="Submit"
           />
         </form>
       {score ?
