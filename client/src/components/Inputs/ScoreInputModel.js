@@ -7,22 +7,42 @@ export default function ScoreInputModel({id , player, handleChange}) {
   const [points, setPoints] = useState(0);
   const [placement, setPlacement] = useState(0);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleChange(id, points, placement);
+  }
+
   return (
     <div>
-      <label htmlFor="points">Points</label>
-        <input
-          type="text"
-          id="points"
-          value={points}
-          onChange={(e) => setPoints(e.target.value)}
+      <form onSubmit={handleSubmit}>
+        <h5>{player.name}</h5>
+        <div className="row">
+          <div className="six columns">
+            <label htmlFor="points">Points</label>
+            <input className="u-full-width"
+              type="text"
+              id="points"
+              value={points}
+              placeholder="0"
+              onChange={(e) => setPoints(e.target.value)}
+            />
+          </div>
+          <div className="six columns">
+            <label htmlFor="placement">Placement</label>
+            <input className="u-full-width"
+              type="text"
+              id="placement"
+              value={placement}
+              placeholder=""
+              onChange={(e) => setPlacement(e.target.value)}
+            />
+          </div>
+        </div>
+        <input className="button" 
+        type="submit" 
+        value="Confirm"
         />
-      <label htmlFor="placement">Placement</label>
-        <input
-          type="text"
-          id="placement"
-          value={placement}
-          onChange={(e) => setPlacement(e.target.value)}
-        />
+      </form>
     </div>
   )
 }

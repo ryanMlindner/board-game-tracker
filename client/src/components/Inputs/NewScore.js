@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { gameinstancesAtom, playersAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
+import { playersAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
 import ScoreInputModel from "./ScoreInputModel";
 //TODO set up modular inputs for # of players in session == # of score input components
 
 export default function NewScore() {
-  const user = useRecoilValue(userAtom);
-  const [players, setPlayers] = useRecoilState(playersAtom);
-  const [sessions, setSessions] = useRecoilState(sessionsAtom);
+  const user = useRecoilValue(userAtom); //object
+  const [players, setPlayers] = useRecoilState(playersAtom); //object
+  const [sessions, setSessions] = useRecoilState(sessionsAtom); //object
 
-  const [session, setSession] = useState(null)
-  
-  const [gameId, setGameId] = useState(null);
-  const [playerId, setPlayerId] = useState(null);
+  const [session, setSession] = useState(null); //id
+  const [gameinstance, setGameInstance] = useState(null); //id
 
   const [score, setScore] = useState(null);
 
@@ -20,30 +18,30 @@ export default function NewScore() {
 
   let scoresArray = [];
 
-  let gameinstance = null;
+  // console.log("players")
+  // console.log(players)
+  // console.log("session")
+  // console.log(sessions[session - 1])
 
-  //TODO array of player ids for post, get names of players from players in a way
-  //that doesnt completely suck
+  //TODO array of player ids for post, get players from players in a way
+  //that doesnt completely suck (attendances!)
 
-  //TODO get list of players for game from either gameinstance->session or from session?
-  //session has a list of gameinstances get from there -> select session then select game
+  function getPlayerSet() {
+    let sessionPlayerIds = []
+    sessions[session - 1].attendances.forEach(attendance => {
+      sessionPlayerIds.push(attendance.player_id)
+    })
+    let sessionPlayers = []
+    sessionPlayerIds.forEach(id => {
+      let player = players.find(player => player.id === id)
+      sessionPlayers.push(player)
+    })
+    return sessionPlayers
+  }
 
-  function handleChange(value, target, id) {
+  function handleChange(id, points, placement) {
     let playerScore = scoresArray.filter((score) => score.id == id);
-    if (playerScore == []) {
-      playerScore = {
-        id : id,
-        points : 0,
-        placement : 0
-      }
-      scoresArray.push(playerScore)
-    }
-    if (target === "points") {
-      playerScore.points = value
-    }
-    if (target === "placement") {
-      playerScore.placement = value
-    }
+    
     console.log(scoresArray)
   }
   
@@ -120,37 +118,50 @@ export default function NewScore() {
     <div className="ui hidden divider"></div>
     {user ?
       <div>
-        <div>
-          <label htmlFor="session">Session</label>
-          <select className="" onChange={(e) => setSession(e.target.value)}>
-            <option value={null}>Select Session</option>
-            {sessions ?
-              sessions.map(session => {
-                return <option key={session.id} 
-                value={session.id}>{session.date}</option>
-              })
-            : <option value={null}>No sessions found</option>
-            }
-          </select>
+        <div className="row">
+          <div className="six columns">
+            <label htmlFor="session">Session</label>
+            <select className="u-full-width" onChange={(e) => setSession(e.target.value)}>
+              <option value={null}>Select Session</option>
+              {sessions ?
+                sessions.map(session => {
+                  return <option key={session.id} 
+                  value={session.id}>{session.date}</option>
+                })
+              : <option value={null}>No sessions found</option>
+              }
+            </select>
+          </div>
+          <div className="six columns">
+            <label htmlFor="gameinstance">Game</label>
+            <select className="u-full-width" onChange={(e) => setGameInstance(e.target.value)}>
+              <option value={null}>Select Game</option>
+              {checkGameInstances() ?
+                sessions[session - 1].game_instances.map(gameinstance => {
+                  return <option key={gameinstance.id} 
+                  value={gameinstance.id}>{gameinstance.game.title}</option>
+                })
+              : <option value={null}>No games found</option>
+              }
+            </select>
+          </div>
         </div>
-        <div>-</div>
-          <label htmlFor="gameinstance">Game</label>
-          <select className="" onChange={(e) => {gameinstance = e.target.value}}>
-            <option value={null}>Select Game</option>
-            {checkGameInstances() ?
-              sessions[session - 1].game_instances.map(gameinstance => {
-                return <option key={gameinstance.id} 
-                value={gameinstance.id}>{gameinstance.game.title}</option>
-              })
-            : <option value={null}>No games found</option>
-            }
-          </select>
-        <form>
           <div className="row">
             <div className="four columns">
-              {}
+              {session ? getPlayerSet().map(player => {
+                return <ScoreInputModel 
+                key={player.id} id={player.id}
+                player={player} handleChange={handleChange}/>
+              })
+              : <div>No players found for this user, add players in New Player!</div>
+              }
             </div>
           </div>
+        <form onSubmit={handleNewSubmit}>
+          <input className="button-primary" 
+          type="submit" 
+          value="Submit (ensure all scores are correct!)"
+          />
         </form>
       {score ?
       <div>Last Score Added: Points: {score.points} Placement: {score.placement}</div>
