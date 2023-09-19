@@ -23,43 +23,49 @@ export default function NavBar(){
   return(
       <div className="container">
         <div className="row">
-          <div className="one column">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
             <NavLink activeClassName="current"
             to="/" exact >Home</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
             <NavLink activeClassName="current"
             to="/totals" exact>Player Scores</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
             <NavLink activeClassName="current"
             to="/gamelist" exact>Game List</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
+        </div>
+        <div className="row">
+          <div className="four columns">
+            <div className="button">
             <NavLink activeClassName="current"
             to="/signup" exact>Sign Up</NavLink>
             </div>
           </div>
-          <div className="one column">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
               <NavLink activeClassName="current"
               to="/login" exact>Log In</NavLink>
             </div>
           </div>
-          <div className="two columns">
+          <div className="four columns">
             <div className="button"
-            onClick={handleLogOutClick}>Log Out</div>
+            onClick={handleLogOutClick}>Log Out
+            </div>
           </div>
+        </div>
+        <div className="row">
           <div className="two columns">
             <div className="button"
-            onClick={handleClick}>Input Menu</div>
+            onClick={handleClick}>Input Menu
+            </div>
           </div>
         </div>
       </div>

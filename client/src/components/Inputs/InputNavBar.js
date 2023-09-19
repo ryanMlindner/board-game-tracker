@@ -9,32 +9,34 @@ export default function InputNavBar(){
   return(
       <div className={showExtra ? "container" : "hide container"}>
         <div className="row">
-          <div className="two columns">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
               <NavLink activeClassName="current"
               to="/newscore" exact>New Score</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
-              <NavLink activeClassName="current"
+          <div className="four columns">
+            <div className="button">
+              <NavLink className="u-full-width" activeClassName="current"
               to="/newgame" exact>New Played Game</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
               <NavLink activeClassName="current"
               to="/newsession" exact>New Session</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
+        </div>
+        <div className="row">
+          <div className="four columns">
+            <div className="button">
               <NavLink activeClassName="current"
               to="/newplayer" exact >New Player</NavLink>
             </div>
           </div>
-          <div className="two columns">
-            <div className="">
+          <div className="four columns">
+            <div className="button">
               <NavLink activeClassName="current"
               to="/newboard" exact>New Board Game</NavLink>
             </div>

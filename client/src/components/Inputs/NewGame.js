@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { gameinstancesAtom, gamesAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
-//TODO tailor forms
 
 export default function NewGame() {
   const user = useRecoilValue(userAtom)
@@ -49,45 +48,46 @@ export default function NewGame() {
   }
 
   return (
-    <div className="ui full-page">
-    <div className="ui hidden divider"></div>
+    <div className="full-page">
     {user ?
-      <div>
-      <div className="ui inverted segment">
-      <form className="ui form" onSubmit={handleNewSubmit}>
+      <form onSubmit={handleNewSubmit}>
         <h1>New Played Game</h1>
-        <label htmlFor="gameinstance">Game</label>
-        <select className="ui search dropdown" onChange={(e) => setGameId(e.target.value)}>
-          <option value={null}>Select Game</option>
-          {games ?
-            games.map(game => {
-              return <option key={game.id} value={game.id}>{game.title}</option>
-            })
-          : <option value={null}>No games found</option>
-          }
-        </select>
-        <label htmlFor="session">Session</label>
-        <select className="ui search dropdown" onChange={(e) => setSessionId(e.target.value)}>
-          <option value={null}>Select Session</option>
-          {sessions ?
-            sessions.map(session => {
-              return <option key={session.id} value={session.id}>{session.date}</option>
-            })
-          : <option value={null}>No sessions found</option>
-          }
-        </select>
-        <div className="ui hidden divider"></div>
-        <button className="ui button" type="submit">Add Played Game</button>
+        <div className="container">
+          <div className="row">
+            <div className="six columns">
+              <label htmlFor="gameinstance">Game</label>
+              <select className="u-full-width" onChange={(e) => setGameId(e.target.value)}>
+                <option value={null}>Select Game</option>
+                {games ?
+                  games.map(game => {
+                    return <option key={game.id} value={game.id}>{game.title}</option>
+                  })
+                : <option value={null}>No games found</option>
+                }
+              </select>
+            </div>
+            <div className="six columns">
+              <label htmlFor="session">Session</label>
+              <select className="u-full-width" onChange={(e) => setSessionId(e.target.value)}>
+                <option value={null}>Select Session</option>
+                {sessions ?
+                  sessions.map(session => {
+                    return <option key={session.id} value={session.id}>{session.date}</option>
+                  })
+                : <option value={null}>No sessions found</option>
+                }
+              </select>
+            </div>
+          </div>
+          <button className="ui button" type="submit">Add Played Game</button>
+        </div>
       </form>
-      </div>
-      <div className="ui hidden divider"></div>
-      {id ?
-      <div>Last Game Added ID: {id}</div>
-      : <div>No Games added this session</div>
-      }
-      </div>
     : <div>Log in to use this feature!</div>
     }
-    </div>
+    {id ?
+    <div>Last Game Added ID: {id}</div>
+    : <div>No Games added this session</div>
+    }
+  </div>
   )
 }

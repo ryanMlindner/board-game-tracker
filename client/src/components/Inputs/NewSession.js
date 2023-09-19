@@ -78,7 +78,6 @@ export default function NewSession() {
 
   return (
     <div className="full-page">
-      <div className="ui hidden divider"></div>
       {user ?
       <div>
         <form className="" onSubmit={handleSubmit}>
@@ -119,12 +118,10 @@ export default function NewSession() {
             <button className="button-primary" type="submit">Add Session</button>
           </div>
         </form>
-      <div className="ui hidden divider"></div>
       {session ?
       <div className="container">Last session added: {session.date}</div>
       : <div className="container">No Session added this Session!</div>
       }
-
       </div>
     : <div>Log in to use this feature!</div>
     }

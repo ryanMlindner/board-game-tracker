@@ -6,12 +6,13 @@ export default function ScoreInputModel({id , player, handleChange}) {
   //but if we have to i guess its fine
   const [points, setPoints] = useState(0);
   const [placement, setPlacement] = useState(0);
-
   
+  const [confirmed, setConfirmed] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
     handleChange(id, points, placement);
+    setConfirmed(true);
   }
 
   return (
@@ -40,7 +41,7 @@ export default function ScoreInputModel({id , player, handleChange}) {
         </div>
         <input className="button" 
         type="submit" 
-        value="Confirm"
+        value={confirmed ? "Confirmed" : "Confirm"}
         />
       </form>
     </div>

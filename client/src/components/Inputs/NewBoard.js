@@ -37,43 +37,47 @@ export default function NewBoard() {
   }
   
   return (
-    <div className="ui full-page">
-      <div className="ui hidden divider"></div>
-      <div className="ui inverted segment">
-        <form className="ui form" onSubmit={handleSubmit}>
+    <div className="full-page">
+      
+        <form onSubmit={handleSubmit}>
           <h1>Add new board game to the database</h1>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            autoComplete="off"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <label htmlFor="publisher">Publisher</label>
-          <input
-            type="text"
-            id="publisher"
-            autoComplete="off"
-            value={publisher}
-            onChange={(e) => setPublisher(e.target.value)}
-          />
-          <label htmlFor="genre">Genre</label>
-          <input
-            type="text"
-            id="genre"
-            autoComplete="off"
-            value={genre}
-            onChange={(e) => setGenre(e.target.value)}
-          />
-          <div className="ui hidden divider"></div>
-          <button className="ui button" type="submit">Add Game</button>
+          <div className="row">
+            <div className="four columns">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                autoComplete="off"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div className="four columns">
+              <label htmlFor="publisher">Publisher</label>
+              <input
+                type="text"
+                id="publisher"
+                autoComplete="off"
+                value={publisher}
+                onChange={(e) => setPublisher(e.target.value)}
+              />
+            </div>
+            <div className="four columns">
+              <label htmlFor="genre">Genre</label>
+              <input
+                type="text"
+                id="genre"
+                autoComplete="off"
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+              />
+            </div>
+          </div>
+          <button className="button-primary" type="submit">Add Game</button>
         </form>
-      </div>
-      <div className="ui hidden divider"></div>
       {game ?
       <div>Last game added: {game.title}</div>
-      : <div>Use the form above to add a game</div>
+      : <div>Use the form above to add a game!</div>
       }
     </div>)
 }

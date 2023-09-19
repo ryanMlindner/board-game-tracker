@@ -16,11 +16,7 @@ import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 
-//TODO UPDATE STYLES IN DISPLAYS, INPUTS --done navbars, IAM
-//list of unstyled files:
-//newboard newgame newplayer newscore newsession title
-//TODO update confirm buttons in scoreinputmodel to reflect if theyve been confirmed (unusable)
-//TODO styles!! then maybe done again???? who knows ill check through
+//TODO check everything
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
