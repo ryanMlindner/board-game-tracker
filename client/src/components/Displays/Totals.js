@@ -38,25 +38,24 @@ export default function Totals() {
 
   return (
     <div className="ui full-page">
-      <div className="ui hidden divider"></div>
-      <div className="ui inverted menu">
-        <div className="item">
-          <button className="ui inverted button" onClick={() => {handleClick("total_score")}}>
+      <div className="row">
+        <div className="four columns">
+          <button className="button" onClick={() => {handleClick("total_score")}}>
             Sort By Total Points
           </button>
         </div>
-        <div className="item">
-          <button className="ui inverted button" onClick={() => {handleClick("average_placement")}}>
+        <div className="four columns">
+          <button className="button" onClick={() => {handleClick("average_placement")}}>
             Sort By Average Placement
           </button>
         </div>
-        <div className="item">
-          <button className="ui inverted button" onClick={() => {handleClick("wins")}}>
+        <div className="four columns">
+          <button className="button" onClick={() => {handleClick("wins")}}>
             Sort By Wins
           </button>
         </div>
       </div>
-      <div className="ui cards">
+      <div className="">
         {players ?
         players.map(player => {
           return <PlayerCard

@@ -18,3 +18,17 @@
 h1, h5 {
   text-align: center;
 }
+
+.card {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 300px;
+	flex-shrink: 0;
+	flex-grow: 0;
+	max-width: 100%;
+	background-color: #BBB;
+	box-shadow: 0 5px 10px 0 rgba(#000, .15);
+	border-radius: 10px;
+	overflow: hidden;
+	margin: 1rem;
+}

@@ -115,8 +115,7 @@ export default function NewScore() {
 
   //TODO make scoreinputmodel work, skeleton is all there
   return (
-    <div className="ui full-page">
-    <div className="ui hidden divider"></div>
+    <div className="full-page">
     {user ?
       <div>
         <h1>New Scores</h1>
@@ -148,18 +147,16 @@ export default function NewScore() {
             </select>
           </div>
         </div>
-          <div className="row">
-            <div className="four columns">
-              {session ? getPlayerSet().map(player => {
-                return <ScoreInputModel 
-                key={player.id} id={player.id}
-                player={player} handleChange={handleChange}/>
-              })
-              : <div>No players found for this user,
-                make sure that the session is selected, 
-                or add players in New Player!</div>
-              }
-            </div>
+          <div className="container">
+            {session ? getPlayerSet().map(player => {
+              return <ScoreInputModel 
+              key={player.id} id={player.id}
+              player={player} handleChange={handleChange}/>
+            })
+            : <div>No players found for this user,
+              make sure that the session is selected, 
+              or add players in New Player!</div>
+            }
           </div>
         <h4>Make sure all scores are confirmed and the game is selected!</h4>
         <form onSubmit={handleNewSubmit}>

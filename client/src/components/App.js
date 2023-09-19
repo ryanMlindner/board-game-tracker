@@ -17,8 +17,8 @@ import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 
 //TODO UPDATE STYLES IN DISPLAYS, INPUTS --done navbars, IAM
-//list of unstyled files: gamecard gamelist playercard scorecard totals 
-//: newboard newgame newplayer newscore newsession home title
+//list of unstyled files:
+//newboard newgame newplayer newscore newsession title
 //TODO update confirm buttons in scoreinputmodel to reflect if theyve been confirmed (unusable)
 //TODO styles!! then maybe done again???? who knows ill check through
 

@@ -19,8 +19,7 @@ export default function GameList() {
 
   return (
     <div className="full-page">
-      <div className="ui hidden divider"></div>
-      <div className="header">List of Games in the database:</div>
+      <h5>List of Games in the database:</h5>
       <div className="container">
         <div className="row">
           {games ?

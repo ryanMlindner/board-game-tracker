@@ -16,18 +16,17 @@ export default function ScoreCard({ id, placement, points, gameInstance}) {
   }
 
   return (
-    <div>
-      <div>Placement : {placement}</div>
-      <div>Points : {points}</div>
-      {gameInstance ? 
-      <div>
-        <div>Game: {gameInstance.game.title}</div>
-        <div>Date: {gameInstance.session.date}</div>
-        <button className="ui button" onClick={handleClick}>Delete Score</button>
-        <div>---</div>
-      </div>
-      : <div></div>
-      }
-    </div>
+    <>
+    {gameInstance ?
+    <tr>
+      <td>{gameInstance.game.title}</td>
+      <td>{placement}</td>
+      <td>{points}</td>
+      <td>{gameInstance.session.date}</td>
+      <td><button onClick={handleClick}>Delete</button></td>
+    </tr>
+    : <>Loading</>
+    }
+    </>
   )
 }

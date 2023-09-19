@@ -17,30 +17,41 @@ export default function PlayerCard({ id, name, scores, totalPoints, wins, averag
   }
   
   return (
-    <div className="ui raised card">
-      <div className="content">
-        <div className="header">{name}</div>
-        <div className="content">Total Points: {totalPoints} | Wins: {wins} </div>
-        <div className="content">Average Placement: 
+    <div className="card">
+      <div className="container">
+        <h1>{name}</h1>
+        <h5>Total Points: {totalPoints} | Wins: {wins} </h5>
+        <h5>Average Placement: 
           {averagePlacement ?
           averagePlacement.toFixed(2)
           : null
           } 
-        </div>
-        <button className="ui button" onClick={handleClick}>Delete Player</button>
+        </h5>
+        <h5><button className="button-primary" onClick={handleClick}>Delete Player</button></h5>
       </div>
-      <div className="content">
-        {scores ?
-        scores.map(score => {
-          return <ScoreCard
-          key={score.id}
-          id={score.id}
-          placement={score.placement}
-          points={score.points}
-          gameInstance={gameinstances[score.game_instance_id - 1]}
-          />})
-        :<div>No scores for player</div>}
-      </div>
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Placement</th>
+            <th>Points</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {scores ?
+          scores.map(score => {
+            return <ScoreCard
+            key={score.id}
+            id={score.id}
+            placement={score.placement}
+            points={score.points}
+            gameInstance={gameinstances[score.game_instance_id - 1]}
+            />})
+            :<div>No scores for player</div>}
+        </tbody>
+      </table>
     </div>
     )
 }

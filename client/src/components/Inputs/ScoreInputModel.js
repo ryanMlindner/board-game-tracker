@@ -7,6 +7,8 @@ export default function ScoreInputModel({id , player, handleChange}) {
   const [points, setPoints] = useState(0);
   const [placement, setPlacement] = useState(0);
 
+  
+
   function handleSubmit(e) {
     e.preventDefault();
     handleChange(id, points, placement);
