@@ -8,14 +8,6 @@ export default function NavBar(){
 
   const [showExtra, setShowExtra] = useRecoilState(showExtraAtom)
 
-  function handleLogOutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
-        setUser(null);
-      }
-    });
-  }
-
   function handleClick() {
     setShowExtra(!showExtra)
   }
@@ -52,17 +44,10 @@ export default function NavBar(){
           <div className="four columns">
             <div className="button">
               <NavLink activeClassName="current"
-              to="/login" exact>Log In</NavLink>
+              to="/login" exact>Log In/Log Out</NavLink>
             </div>
           </div>
           <div className="four columns">
-            <div className="button"
-            onClick={handleLogOutClick}>Log Out
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="two columns">
             <div className="button"
             onClick={handleClick}>Input Menu
             </div>

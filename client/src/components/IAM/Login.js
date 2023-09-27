@@ -22,10 +22,25 @@ export default function Login() {
     });
   }
 
+  function handleLogOutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
+
   return (
     <div className="full-page">
       {user ?
-      <h3>Logged in: {user.username} Use the menu button to log out</h3>
+      <div className="row">
+        <h3>Logged in: {user.username} </h3>
+        <div className="four columns">
+          <div className="button"
+          onClick={handleLogOutClick}>Log Out
+          </div>
+        </div>
+      </div>
       : 
       <>
       <h2>Log In</h2>

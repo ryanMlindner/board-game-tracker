@@ -16,7 +16,10 @@ import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 
-//TODO check everything
+//TODO check everything, dark mode maybe
+// delete game instances
+// dockerize
+// readme
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
@@ -31,7 +34,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="full-page">
+    <div className="">
 			<Title />
       <NavBar />
       <InputNavBar/>
