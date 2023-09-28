@@ -5,8 +5,20 @@ import { gameinstancesAtom, updatedAtom } from "../HelperFunctions/atoms"
 export default function GameInstances() {
     const updated = useRecoilValue(updatedAtom);
     const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom);
-    
 
+    //TODO export to a helper file
+    function parseForDisplay(list) {
+        let setsOfThree = []
+        for (let step = 0; step < list.length; step = step + 3) {
+            let newDisplaySet = []
+            for(let upToThree = 0; upToThree < 3; upToThree ++) {
+                if (list[step]) {newDisplaySet.push(list[step])}
+            }
+            console.log(newDisplaySet)
+        }
+        console.log(setsOfThree)
+        return setsOfThree
+    }
 
     useEffect(() => {
         fetch("/gameinstances")
