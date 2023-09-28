@@ -18,6 +18,7 @@ import GameList from "./Displays/GameList.js";
 
 //TODO check everything, dark mode maybe
 // delete game instances
+// 
 // dockerize
 // readme
 

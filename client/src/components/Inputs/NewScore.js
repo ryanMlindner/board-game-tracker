@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { playersAtom, sessionsAtom, userAtom } from "../HelperFunctions/atoms";
 import ScoreInputModel from "./ScoreInputModel";
-//TODO set up modular inputs for # of players in session == # of score input components
 
 export default function NewScore() {
   const user = useRecoilValue(userAtom); //object
@@ -113,7 +112,6 @@ export default function NewScore() {
     else return false
   }
 
-  //TODO make scoreinputmodel work, skeleton is all there
   return (
     <div className="full-page">
     {user ?
