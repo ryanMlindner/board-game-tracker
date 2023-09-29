@@ -1,9 +1,11 @@
 # Board Game Tracker
 
+## Demo
+
+https://www.youtube.com/watch?v=byQO8L-Foe4
+
 ## Project Pitch
-  An online database to keep track of games, scores, and attendance at game nights, with a UI that displays any 
-and all information that can be derived from the data (averages, placement, rankings, etc.). Users can log in and keep 
-track of all the data they wish to and come back to it whenever they need.
+  An online database to keep track of games, scores, and attendance at game nights, with a UI that displays any and all information that can be derived from the data (averages, placement, rankings, etc.). Users can log in and keep track of all the data they wish to and come back to it whenever they need.
 
 ---
 
@@ -86,7 +88,7 @@ npm start --prefix client
 
 ## Resources
 
-- [Setting up a respository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
+- [Setting up a repository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
 - [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
 - [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
 - [Python Circular Imports - StackAbuse](https://stackabuse.com/python-circular-imports/)
