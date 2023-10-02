@@ -53,6 +53,14 @@ export default function NavBar(){
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="four columns">
+          <div className="button">
+              <NavLink activeClassName="current"
+              to="/gameinstances" exact>Game Instances</NavLink>
+            </div>
+          </div>
+        </div>
       </div>
   )
 }

@@ -6,10 +6,9 @@ export default function parseFunction(list) {
     for (let step = 0; step < list.length; step = step + 3) {
         let newDisplaySet = []
         for(let upToThree = 0; upToThree < 3; upToThree ++) {
-            if (list[step]) {newDisplaySet.push(list[step])}
+            if (list[step + upToThree]) {newDisplaySet.push(list[step + upToThree])}
         }
-        console.log(newDisplaySet)//TODO
+        setsOfThree.push(newDisplaySet)
     }
-    console.log(setsOfThree)//TODO
     return setsOfThree
 }

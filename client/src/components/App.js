@@ -15,6 +15,7 @@ import NewPlayer from "./Inputs/NewPlayer.js";
 import NewGame from "./Inputs/NewGame.js";
 import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
+import GameInstances from "./Displays/GameInstances.js";
 
 //TODO check everything, dark mode maybe
 // delete game instances
@@ -70,6 +71,9 @@ export default function App() {
         </Route>
         <Route exact path="/gamelist">
           <GameList/>
+        </Route>
+        <Route exact path="/gameinstances">
+          <GameInstances/>
         </Route>
       </Switch>
     </div>
