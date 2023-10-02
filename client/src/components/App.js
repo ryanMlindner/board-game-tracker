@@ -17,11 +17,11 @@ import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 import GameInstances from "./Displays/GameInstances.js";
 
-//TODO check everything, dark mode maybe
-// delete game instances
-// 
+//TODO parse function utilization for the rest of the displays
+// clean up forms with components
+// finish game instance compononents
+// other cleanup
 // dockerize
-// readme
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)

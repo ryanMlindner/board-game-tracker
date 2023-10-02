@@ -24,9 +24,29 @@ https://www.youtube.com/watch?v=byQO8L-Foe4
 ├── README.md
 ├── client
 │   ├── README.md
+│   ├── node_modules
+│   ├── package-lock.json
 │   ├── package.json
 │   ├── public
 │   └── src
+│       ├── CSS
+│       │   ├── custom.css
+│       │   ├── index.css
+│       │   ├── normalize.css
+│       │   └── skeleton.css
+│       ├── Deps
+│       │   ├── Phase5ERD.png
+│       │   └── trackerImage.png
+│       ├── components
+│       │   ├── App.js
+│       │   ├── Displays
+│       │   ├── HelperFunctions
+│       │   ├── Home.js
+│       │   ├── IAM
+│       │   ├── Inputs
+│       │   ├── NavBar.js
+│       │   └── Title.js
+│       └── index.js
 └── server
     ├── app.py
     ├── config.py
