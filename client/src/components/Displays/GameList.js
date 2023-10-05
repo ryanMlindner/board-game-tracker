@@ -17,6 +17,7 @@ export default function GameList() {
     .then(data => setGameinstances(data))
   }, [updated])
 
+  //TODO refactor with parse function to make things not look so terrible (:
   return (
     <div className="full-page">
       <h5>List of Games in the database:</h5>
