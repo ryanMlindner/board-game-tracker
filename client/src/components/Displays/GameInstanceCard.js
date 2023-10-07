@@ -1,11 +1,13 @@
 import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { updatedAtom } from "../HelperFunctions/atoms";
 
 export default function GameInstanceCard({ gameinstance }) {
   //TODO fill in gameinstance data
   const [updated, setUpdated] = useRecoilState(updatedAtom)
   
+  console.log(gameinstance)
+
   function handleClick() {
     fetch(`gameinstancesbyid/${gameinstance.id}`, {
       method: "DELETE",
