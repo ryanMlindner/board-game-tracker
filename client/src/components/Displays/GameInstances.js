@@ -16,6 +16,14 @@ export default function GameInstances() {
         }
     }
 
+    function handleDelete(gameinstance) {
+        let tempList = [...displayList]
+        //console.log(tempList)
+        tempList = tempList.filter((element) => element.id !== gameinstance.id)
+        //console.log(tempList)
+        setDisplayList([...tempList])
+    }
+
     useEffect(() => {
         fetch("/gameinstances")
         .then(res => res.json())
@@ -32,7 +40,8 @@ export default function GameInstances() {
                     let tempList = []
                     setOfThree.forEach(element => {
                         let item = <GameInstanceCard id={element.id}
-                        gameinstance={element}/>
+                        gameinstance={element}
+                        handleDelete={handleDelete}/>
                         tempList.push(item)
                     }); 
                     return <InstanceRow items={tempList}/>
