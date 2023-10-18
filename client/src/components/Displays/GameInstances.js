@@ -10,14 +10,10 @@ export default function GameInstances() {
     const [gameinstances, setGameinstances] = useRecoilState(gameinstancesAtom);
     const [displayList, setDisplayList] = useState([])
 
-    let display = false
-
     function updateList(data) {
         if (data.length != 0) {
             setDisplayList(parseFunction(gameinstances))
-            return true
         }
-        return false
     }
 
     useEffect(() => {
@@ -29,14 +25,14 @@ export default function GameInstances() {
         })
       }, [updated])
     
-    //TODO hook up useful game instance data + delete button
     return (
         <div>
             {displayList ?
                 displayList.map(setOfThree => {
                     let tempList = []
                     setOfThree.forEach(element => {
-                        let item = <GameInstanceCard id={element.id} gameinstance={element}/>
+                        let item = <GameInstanceCard id={element.id}
+                        gameinstance={element}/>
                         tempList.push(item)
                     }); 
                     return <InstanceRow items={tempList}/>

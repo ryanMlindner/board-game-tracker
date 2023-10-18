@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { gameinstancesAtom, gamesAtom, updatedAtom } from "../HelperFunctions/atoms";
 import GameCard from "./GameCard";
 import InstanceRow from "./InstanceRow";
+import parseFunction from "../HelperFunctions/parseFunction"
 
 export default function GameList() {
   const [games, setGames] = useRecoilState(gamesAtom)
@@ -24,14 +25,12 @@ export default function GameList() {
   }, [updated])
 
   function updateList(data) {
-    if (data.length != 0) {
+    if (data.length !== 0) {
         setDisplayList(parseFunction(gameinstances))
         return true
     }
     return false
 }
-
-  //TODO testing (im very tired)
 
   return (
     <div className="full-page">
@@ -40,8 +39,9 @@ export default function GameList() {
           displayList.map(setOfThree => {
             let tempList = []
             setOfThree.forEach(element => {
-              let item = <GameCard key = {element.id} id= {element.id} title= {element.title} 
-              publisher= {element.publisher} genre= {element.genre}/>
+              let item = <GameCard key = {element.game.id} id= {element.game.id} 
+              title= {element.game.title} 
+              publisher= {element.game.publisher} genre= {element.game.genre}/>
               tempList.push(item)
             })
           return <InstanceRow items={tempList}/>

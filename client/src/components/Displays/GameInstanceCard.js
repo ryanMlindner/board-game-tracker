@@ -5,8 +5,6 @@ import { updatedAtom } from "../HelperFunctions/atoms";
 export default function GameInstanceCard({ gameinstance }) {
   //TODO fill in gameinstance data
   const [updated, setUpdated] = useRecoilState(updatedAtom)
-  
-  console.log(gameinstance)
 
   function handleClick() {
     fetch(`gameinstancesbyid/${gameinstance.id}`, {
@@ -18,7 +16,9 @@ export default function GameInstanceCard({ gameinstance }) {
   }
   return (
     <div>
-      <h5>{gameinstance.id}</h5>
+      <div>Title: {gameinstance.game.title}</div>
+      <div>Date: {gameinstance.session.date}</div>
+      <div>Total Scores: {gameinstance.scores.length}</div>
       <button className="button" onClick={handleClick}>Delete Instance</button>
     </div>
   )

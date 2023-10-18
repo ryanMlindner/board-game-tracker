@@ -29,7 +29,7 @@ export default function PlayerCard({ id, name, scores, totalPoints, wins, averag
         </h5>
         <h5><button className="button-primary" onClick={handleClick}>Delete Player</button></h5>
       </div>
-      <table class="u-full-width">
+      <table className="u-full-width">
         <thead>
           <tr>
             <th>Game</th>

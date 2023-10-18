@@ -32,7 +32,7 @@ export const showExtraAtom = atom({
 
 export const updatedAtom = atom({
   key: 'updatedKey',
-  default: ''
+  default: false
 })
 
 export const attendancesAtom = atom({
