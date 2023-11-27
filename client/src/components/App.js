@@ -17,11 +17,15 @@ import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 import GameInstances from "./Displays/GameInstances.js";
 
-//TODO parse function utilization for the rest of the displays
-// clean up forms with components
-// finish game instance compononents
-// other cleanup
-// dockerize
+//TODO dockerize
+/**
+ * theres obviously a lot of small issues with everything here
+ * if i try to fix code i wrote months ago to make it perfect for how i see it now
+ * i would finish that and then have to immediately do it again because my view
+ * would have changed again.
+ * making a docker image and setting up CI/CD should be the next step here,
+ * procrastinating about new tech only lasts so long before i explode 
+ */
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
