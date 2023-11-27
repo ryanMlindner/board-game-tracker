@@ -74,6 +74,8 @@ class GameInstance(db.Model, SerializerMixin):
 
     scores = db.relationship("Score", cascade="all, delete-orphan", backref='gameinstance')
 
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
     @validates('session_id', 'game_id')
     def validate_username(self, key, entry):
         if entry == '':

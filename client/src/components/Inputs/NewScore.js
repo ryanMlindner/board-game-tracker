@@ -37,10 +37,8 @@ export default function NewScore() {
         points : points,
         placement : placement
       }
-      console.log(playerScore)
       scoresArray.push(playerScore)
     }
-    console.log(scoresArray)
   }
   
   useEffect(() => {
@@ -56,7 +54,6 @@ export default function NewScore() {
   function handleNewSubmit(e) {
     e.preventDefault();
     scoresArray.forEach(score => {
-      console.log(score)
       const newScore = {
           game_instance_id: gameinstance,
           player_id: score.id,

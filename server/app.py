@@ -75,7 +75,7 @@ class Games(Resource):
 
 class GameInstances(Resource):
     def get(self):
-        response = make_response(get_all_dict(GameInstance), 200)
+        response = make_response(get_all_dict_filter_user(GameInstance), 200)
         return response
     def post(self):
         json = request.get_json()
