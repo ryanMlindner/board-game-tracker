@@ -268,17 +268,17 @@ class Rankings(Resource):
             player.total_score = 0
             player.wins = 0
             placements = 0
-            scores = 0
+            games = 0
             for score in player.scores:
-                scores += 1
+                games += 1
                 player.total_score += score.points
                 if score.placement == 1:
                     player.wins += 1
                 placements += score.placement
-            if scores == 0:
+            if games == 0:
                 player.average_placement = 0
             else:
-                player.average_placement = placements/scores
+                player.average_placement = placements/games
         
         players_dict = [player.to_dict() for player in players]
         response = make_response(players_dict, 200)

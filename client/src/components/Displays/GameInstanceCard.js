@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { updatedAtom } from "../HelperFunctions/atoms";
 
 export default function GameInstanceCard({ gameinstance, handleDelete }) {
-  //TODO fill in gameinstance data
+  
   const [updated, setUpdated] = useRecoilState(updatedAtom)
 
   function handleClick() {

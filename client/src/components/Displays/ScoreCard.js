@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { updatedAtom } from "../HelperFunctions/atoms";
+import { gameinstancesAtom, updatedAtom } from "../HelperFunctions/atoms";
 
-export default function ScoreCard({ id, placement, points, gameInstance}) {
+export default function ScoreCard({ id, placement, gameInstance, points}) {
   const [updated, setUpdated] = useRecoilState(updatedAtom)
-
 
   function handleClick() {
     fetch(`/scoresbyid/${id}`,{

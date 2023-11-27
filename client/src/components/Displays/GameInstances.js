@@ -18,9 +18,7 @@ export default function GameInstances() {
 
     function handleDelete(gameinstance) {
         let tempList = [...displayList]
-        //console.log(tempList)
         tempList = tempList.filter((element) => element.id !== gameinstance.id)
-        //console.log(tempList)
         setDisplayList([...tempList])
     }
 
@@ -39,7 +37,7 @@ export default function GameInstances() {
                 displayList.map(setOfThree => {
                     let tempList = []
                     setOfThree.forEach(element => {
-                        let item = <GameInstanceCard id={element.id}
+                        let item = <GameInstanceCard key={element.id}
                         gameinstance={element}
                         handleDelete={handleDelete}/>
                         tempList.push(item)

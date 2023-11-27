@@ -46,8 +46,11 @@ export default function PlayerCard({ id, name, scores, totalPoints, wins, averag
             key={score.id}
             id={score.id}
             placement={score.placement}
+            gameInstance={gameinstances ?
+              gameinstances.find((gameinstance) => gameinstance.id === score.game_instance_id)
+              : null
+            }
             points={score.points}
-            gameInstance={gameinstances[score.game_instance_id - 1]}
             />})
             :<div>No scores for player</div>}
         </tbody>
