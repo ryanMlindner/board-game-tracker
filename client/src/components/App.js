@@ -20,9 +20,9 @@ import GameInstances from "./Displays/GameInstances.js";
 //TODO dockerize
 /**
  * theres obviously a lot of small issues with everything here
- * if i try to fix code i wrote months ago to make it perfect for how i see it now
- * i would finish that and then have to immediately do it again because my view
- * would have changed again.
+ * todo fix dates? thats kind of
+ * huge
+ * and a big problem
  * making a docker image and setting up CI/CD should be the next step here,
  * procrastinating about new tech only lasts so long before i explode 
  */

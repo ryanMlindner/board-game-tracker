@@ -3,6 +3,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { gameinstancesAtom, playersAtom, updatedAtom, userAtom } from "../HelperFunctions/atoms";
 import PlayerCard from "./PlayerCard";
 
+//TODO date filtering functionality
+//should probably fix dates first so that things work like they do everywhere else
 export default function Totals() {
   const updated = useRecoilValue(updatedAtom)
   const [players, setPlayers] = useRecoilState(playersAtom)

@@ -5,10 +5,10 @@ export default function GameCard({ title, publisher, genre }) {
   return (
     <div className="card">
       <h1>
-        {title} 
+        {title}
       </h1>
       <h5>
-        {publisher}
+        Publisher: {publisher}
       </h5>
       <h5>
         Genre: {genre}
