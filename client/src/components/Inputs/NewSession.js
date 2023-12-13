@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import { attendancesAtom, playersAtom, sessionsAtom, updatedAtom, userAtom } from "../HelperFunctions/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import PlayerButton from "./PlayerButton";
@@ -76,6 +78,11 @@ export default function NewSession() {
     setPlayersInSession(tempArray);
   }
 
+  function handleChange(e) {
+    setDate(e)
+    console.log(typeof(e))
+  }
+
   return (
     <div className="full-page">
       {user ?
@@ -86,15 +93,7 @@ export default function NewSession() {
           <div className="container">
             <div className="row">
               <div className="four columns">
-                <label htmlFor="date">Date</label>
-                <input
-                  type="text"
-                  id="date"
-                  autoComplete="off"
-                  value={date}
-                  placeholder="mm/dd/yyyy"
-                  onChange={(e) => setDate(e.target.value)}
-                />
+                <Calendar onChange={(e) => handleChange(e)} date={date} />
               </div>
             </div>
           </div>

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 # Standard library imports
+import datetime
+import dateutil.parser as dt
 
 # Remote library imports
 from flask import request, jsonify, make_response, session
@@ -100,7 +102,7 @@ class Sessions(Resource):
     def post(self):
         json = request.get_json()
         new_session = Session(
-            date=json["date"],
+            date=dt.parse(json["date"]),
             user_id=session["user_id"]
         )
         try:
