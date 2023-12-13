@@ -4,7 +4,8 @@ import { gameinstancesAtom, playersAtom, updatedAtom, userAtom } from "../Helper
 import PlayerCard from "./PlayerCard";
 
 //TODO date filtering functionality
-//should probably fix dates first so that things work like they do everywhere else
+//I.E. section scores by quarter, given a start and end date?
+//ask for collab on this possibly
 export default function Totals() {
   const updated = useRecoilValue(updatedAtom)
   const [players, setPlayers] = useRecoilState(playersAtom)
