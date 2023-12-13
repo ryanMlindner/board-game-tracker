@@ -19,12 +19,14 @@ import GameInstances from "./Displays/GameInstances.js";
 
 //TODO dockerize
 /**
- * theres obviously a lot of small issues with everything here
- * todo fix dates? thats kind of
- * huge
- * and a big problem
- * making a docker image and setting up CI/CD should be the next step here,
- * procrastinating about new tech only lasts so long before i explode 
+ * dockerize steps :
+ * research how to dockerize the flask app and the react app
+ * understand how to combine those into one docker image? or use two...
+ * short answer for clientside --
+ * add .dockerignore, Dockerfile, and docker-compose.yml in client directory
+ * write files
+ * repeat for serverside
+ * profit?
  */
 
 export default function App() {
