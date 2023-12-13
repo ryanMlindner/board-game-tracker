@@ -89,7 +89,7 @@ class Session(db.Model, SerializerMixin):
     serialize_rules = ('-game_instances.session', '-attendances.session', '-user')
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String)
+    date = db.Column(db.DateTime)
 
     game_instances = db.relationship("GameInstance", cascade="all, delete-orphan", backref='session')
     attendances = db.relationship("Attendance", cascade='all, delete-orphan', backref='session')
