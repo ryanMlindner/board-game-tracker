@@ -1,0 +1,9 @@
+
+services:
+  app:
+    container_name: docker-client-side
+    image: docker-client-side-image
+    build: 
+      context: .
+    ports:
+      - 8080:80
