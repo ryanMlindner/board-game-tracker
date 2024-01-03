@@ -17,17 +17,7 @@ import NewBoard from "./Inputs/NewBoard.js";
 import GameList from "./Displays/GameList.js";
 import GameInstances from "./Displays/GameInstances.js";
 
-//TODO dockerize
-/**
- * dockerize steps :
- * research how to dockerize the flask app and the react app
- * understand how to combine those into one docker image? or use two...
- * short answer for clientside --
- * add .dockerignore, Dockerfile, and docker-compose.yml in client directory
- * write files
- * repeat for serverside
- * profit?
- */
+//TODO test serverside dockerize on monday, look at filtering by date
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom)
