@@ -1,17 +1,16 @@
-FROM python:3.7-slim
+FROM python:3.8.13
 
 RUN pip install pipenv
 
-ENV SRC_DIR .. .
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
 
-WORKDIR ${SRC_DIR}
+WORKDIR /app
 
-COPY Pipfile Pipfile.lock ${SRC_DIR}/
+COPY requirements.txt requirements.txt
 
-RUN pipenv install --system --clear
+RUN pip install -r requirements.txt
 
-COPY ./ ${SRC_DIR}/
+COPY ./ /app
 
-WORKDIR ${SRC_DIR}/src/webapp
-
-CMD ["flask", "run", "-h", "0.0.0.0"]
+CMD ["python", "app.py"]
