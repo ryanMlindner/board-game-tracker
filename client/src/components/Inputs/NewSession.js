@@ -80,14 +80,12 @@ export default function NewSession() {
 
   function handleChange(e) {
     setDate(e)
-    console.log(typeof(e))
   }
 
   return (
     <div className="full-page">
       {user ?
       <div>
-        <form className="" onSubmit={handleSubmit}>
           <h1>New Session</h1>
           <h5>Input date of session, then select players who attended, then press Add Session!</h5>
           <div className="container">
@@ -113,6 +111,7 @@ export default function NewSession() {
               }
             </div>
           </div>
+        <form className="" onSubmit={handleSubmit}>
           <div className="container">
             <button className="button-primary" type="submit">Add Session</button>
           </div>

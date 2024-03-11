@@ -353,5 +353,5 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(CheckAuth, '/check_auth', endpoint='check_auth')
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=9292, debug=True)
 
