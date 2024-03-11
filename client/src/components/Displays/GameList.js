@@ -10,7 +10,6 @@ export default function GameList() {
   const updated = useRecoilValue(updatedAtom)
 
   const [displayList, setDisplayList] = useState(null)
-  console.log(games)
 
   useEffect(() => {
     fetch("/games")

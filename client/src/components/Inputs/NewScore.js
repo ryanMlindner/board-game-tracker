@@ -100,7 +100,6 @@ export default function NewScore() {
   }
 
   function checkGameInstances() {
-    console.log(sessions[session - 1])
     if (sessions[session - 1]) {
       if (sessions[session - 1].game_instances.length > 0) {
         return true
