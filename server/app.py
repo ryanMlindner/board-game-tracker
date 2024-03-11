@@ -83,7 +83,8 @@ class GameInstances(Resource):
         json = request.get_json()
         new_gameinstance = GameInstance(
             game_id=json["game_id"],
-            session_id=json["session_id"]
+            session_id=json["session_id"],
+            user_id=session["user_id"]
         )
         try:
             db.session.add(new_gameinstance)
